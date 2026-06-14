@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -7,136 +7,16 @@
   <title>Daftar Ujian – SIDANUS</title>
   <meta name="description"
     content="Form pendaftaran ujian proposal, hasil, dan munaqasyah mahasiswa Sistem Informasi." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
-    }
-  </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/mahasiswa.css" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <style>
-    #sidebar-toggle {
-      display: none;
-    }
-
-    #sidebar-overlay {
-      display: none;
-    }
-
-    #sidebar-toggle:checked~#sidebar-overlay {
-      display: block;
-    }
-
-    #sidebar-toggle:checked~#sidebar {
-      transform: translateX(0);
-    }
-
-    .sidebar-link {
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .sidebar-link:hover,
-    .sidebar-link.active {
-      background: rgba(5, 150, 105, 0.12);
-      color: #059669;
-    }
-
-    .sidebar-link.active {
-      font-weight: 600;
-      border-right: 3px solid #059669;
-    }
-
-    .input-style {
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
-      border-radius: 0.75rem;
-      padding: 0.75rem 1rem;
-      width: 100%;
-      font-size: 0.875rem;
-      color: #334155;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .input-style:focus {
-      border-color: #059669;
-      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
-      outline: none;
-      background: #fff;
-    }
-
-    .file-drop {
-      border: 2px dashed #d1fae5;
-      background: #f0fdf4;
-      border-radius: 1rem;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .file-drop:hover {
-      border-color: #059669;
-      background: #ecfdf5;
-    }
-
-    /* Radio ujian type cards */
-    input[type=radio].radio-card {
-      display: none;
-    }
-
-    input[type=radio].radio-card+label {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: white;
-      text-align: center;
-    }
-
-    input[type=radio].radio-card:checked+label {
-      border-color: #059669;
-      background: #ecfdf5;
-      color: #065f46;
-    }
-
-    input[type=radio].radio-card+label .radio-icon {
-      color: #94a3b8;
-      transition: color 0.2s;
-    }
-
-    input[type=radio].radio-card:checked+label .radio-icon {
-      color: #059669;
-    }
-
-    /* Accordion via details */
-    details>summary {
-      list-style: none;
-      cursor: pointer;
-    }
-
-    details>summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details[open] .chevron {
-      transform: rotate(180deg);
-    }
-
-    .chevron {
-      transition: transform 0.2s;
-    }
-
-    .section-card {
-      background: white;
-      border-radius: 1.25rem;
-      border: 1px solid #f1f5f9;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-      padding: 1.5rem;
-    }
-  </style>
+  
 </head>
 
 <body class="bg-slate-50 font-sans text-slate-700">

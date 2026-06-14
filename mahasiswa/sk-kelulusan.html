@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -7,170 +7,16 @@
   <title>SK Kelulusan – SIDANUS</title>
   <meta name="description"
     content="Surat Keterangan Kelulusan Ujian Skripsi mahasiswa Jurusan Sistem Informasi UIN Alauddin Makassar." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Georgia', 'serif'] } } }
-    }
-  </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/sk-kelulusan.css" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <style>
-    #sidebar-toggle {
-      display: none;
-    }
-
-    #sidebar-overlay {
-      display: none;
-    }
-
-    #sidebar-toggle:checked~#sidebar-overlay {
-      display: block;
-    }
-
-    #sidebar-toggle:checked~#sidebar {
-      transform: translateX(0);
-    }
-
-    .sidebar-link {
-      transition: background .15s, color .15s;
-    }
-
-    .sidebar-link:hover,
-    .sidebar-link.active {
-      background: rgba(5, 150, 105, 0.12);
-      color: #059669;
-    }
-
-    .sidebar-link.active {
-      font-weight: 600;
-      border-right: 3px solid #059669;
-    }
-
-    /* Print Styles */
-    @media print {
-      .no-print {
-        display: none !important;
-      }
-
-      .print-only {
-        display: block !important;
-      }
-
-      body {
-        background: white !important;
-      }
-
-      #sidebar,
-      header,
-      footer,
-      .action-bar {
-        display: none !important;
-      }
-
-      .lg\:ml-64 {
-        margin-left: 0 !important;
-      }
-
-      .sk-paper {
-        box-shadow: none !important;
-        border: none !important;
-        margin: 0 !important;
-        padding: 2cm !important;
-        max-width: 100% !important;
-      }
-
-      @page {
-        margin: 1.5cm;
-        size: A4 portrait;
-      }
-    }
-
-    /* SK Paper Design */
-    .sk-paper {
-      background: white;
-      max-width: 760px;
-      margin: 0 auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sk-paper::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, #064e3b 0%, #059669 50%, #34d399 100%);
-    }
-
-    /* Watermark */
-    .watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-30deg);
-      font-size: 7rem;
-      font-weight: 900;
-      color: rgba(5, 150, 105, 0.04);
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      letter-spacing: 0.2em;
-    }
-
-    /* Letterhead border */
-    .letterhead-border {
-      border: 3px solid #059669;
-      border-radius: 0;
-    }
-
-    /* QR placeholder */
-    .qr-box {
-      width: 80px;
-      height: 80px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f8fafc;
-    }
-
-    /* Seal placeholder */
-    .seal {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      border: 4px double #059669;
-      background: radial-gradient(circle, #ecfdf5 0%, #d1fae5 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    /* Score table */
-    .score-row td {
-      padding: 0.5rem 0.75rem;
-      font-size: 0.8rem;
-    }
-
-    .score-row:nth-child(even) td {
-      background: #f8fafc;
-    }
-
-    /* Status banner */
-    .status-lulus {
-      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-      border: 2px solid #059669;
-      border-radius: 1rem;
-      padding: 0.75rem 1.5rem;
-      text-align: center;
-    }
-  </style>
+  
 </head>
 
 <body class="bg-slate-100 font-sans text-slate-700">

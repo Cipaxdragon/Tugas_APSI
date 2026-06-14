@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -6,128 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profil & Ganti Password – SIDANUS</title>
   <meta name="description" content="Halaman profil dan pengaturan keamanan akun mahasiswa SIDANUS." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
-    }
-  </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/profil.css" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <style>
-    #sidebar-toggle {
-      display: none;
-    }
-
-    #sidebar-overlay {
-      display: none;
-    }
-
-    #sidebar-toggle:checked~#sidebar-overlay {
-      display: block;
-    }
-
-    #sidebar-toggle:checked~#sidebar {
-      transform: translateX(0);
-    }
-
-    .sidebar-link {
-      transition: background .15s, color .15s;
-    }
-
-    .sidebar-link:hover,
-    .sidebar-link.active {
-      background: rgba(5, 150, 105, 0.12);
-      color: #059669;
-    }
-
-    .sidebar-link.active {
-      font-weight: 600;
-      border-right: 3px solid #059669;
-    }
-
-    .input-style {
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
-      border-radius: .75rem;
-      padding: .75rem 1rem;
-      width: 100%;
-      font-size: .875rem;
-      color: #334155;
-      transition: border-color .2s, box-shadow .2s;
-    }
-
-    .input-style:focus {
-      border-color: #059669;
-      box-shadow: 0 0 0 3px rgba(5, 150, 105, .12);
-      outline: none;
-      background: #fff;
-    }
-
-    .section-card {
-      background: white;
-      border-radius: 1.25rem;
-      border: 1px solid #f1f5f9;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
-      padding: 1.5rem;
-    }
-
-    /* Tab hack via radio */
-    input[type=radio].tab-radio {
-      display: none;
-    }
-
-    #tab-profil:checked~.tab-content #panel-profil {
-      display: block;
-    }
-
-    #tab-profil:checked~.tab-content #panel-password {
-      display: none;
-    }
-
-    #tab-password:checked~.tab-content #panel-profil {
-      display: none;
-    }
-
-    #tab-password:checked~.tab-content #panel-password {
-      display: block;
-    }
-
-    .tab-label {
-      padding: .6rem 1.25rem;
-      border-radius: .75rem;
-      cursor: pointer;
-      font-size: .875rem;
-      font-weight: 600;
-      color: #64748b;
-      transition: all .2s;
-      white-space: nowrap;
-    }
-
-    #tab-profil:checked~.tab-labels label[for=tab-profil] {
-      background: #ecfdf5;
-      color: #059669;
-    }
-
-    #tab-password:checked~.tab-labels label[for=tab-password] {
-      background: #ecfdf5;
-      color: #059669;
-    }
-
-    /* Strength bar */
-    .strength-bar {
-      height: 4px;
-      border-radius: 9999px;
-      background: #e2e8f0;
-      overflow: hidden;
-    }
-
-    .strength-fill {
-      height: 100%;
-      border-radius: 9999px;
-      transition: width .4s, background .4s;
-    }
-  </style>
+  
 </head>
 
 <body class="bg-slate-50 font-sans text-slate-700">

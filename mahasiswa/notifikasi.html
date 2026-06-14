@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -7,137 +7,16 @@
   <title>Notifikasi & Inbox – SIDANUS</title>
   <meta name="description"
     content="Kotak masuk notifikasi dan pesan penting terkait pendaftaran ujian mahasiswa SIDANUS." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
-    }
-  </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/notifikasi.css" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <style>
-    #sidebar-toggle {
-      display: none;
-    }
-
-    #sidebar-overlay {
-      display: none;
-    }
-
-    #sidebar-toggle:checked~#sidebar-overlay {
-      display: block;
-    }
-
-    #sidebar-toggle:checked~#sidebar {
-      transform: translateX(0);
-    }
-
-    .sidebar-link {
-      transition: background .15s, color .15s;
-    }
-
-    .sidebar-link:hover,
-    .sidebar-link.active {
-      background: rgba(5, 150, 105, 0.12);
-      color: #059669;
-    }
-
-    .sidebar-link.active {
-      font-weight: 600;
-      border-right: 3px solid #059669;
-    }
-
-    /* Filter tabs radio hack */
-    input[type=radio].notif-filter {
-      display: none;
-    }
-
-    input[type=radio].notif-filter+label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1rem;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 9999px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #64748b;
-      background: white;
-      transition: all .2s;
-    }
-
-    input[type=radio].notif-filter:checked+label {
-      background: #059669;
-      border-color: #059669;
-      color: white;
-    }
-
-    /* Notif item */
-    .notif-item {
-      transition: background .15s, border-color .15s;
-      border-left: 4px solid transparent;
-    }
-
-    .notif-item.unread {
-      border-left-color: #059669;
-      background: #f0fdf4;
-    }
-
-    .notif-item.unread:hover {
-      background: #dcfce7;
-    }
-
-    .notif-item.read {
-      background: white;
-    }
-
-    .notif-item.read:hover {
-      background: #f8fafc;
-    }
-
-    .notif-item.urgent {
-      border-left-color: #e11d48;
-    }
-
-    .notif-item.urgent.unread {
-      background: #fff1f2;
-    }
-
-    /* Details accordion */
-    details>summary {
-      list-style: none;
-      cursor: pointer;
-    }
-
-    details>summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details[open] .chevron {
-      transform: rotate(180deg);
-    }
-
-    .chevron {
-      transition: transform .2s;
-    }
-
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: .5
-      }
-    }
-  </style>
+  
 </head>
 
 <body class="bg-slate-50 font-sans text-slate-700">

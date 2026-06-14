@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -7,74 +7,16 @@
   <title>Dashboard Mahasiswa – SIDANUS</title>
   <meta name="description"
     content="Dashboard mahasiswa untuk memantau status verifikasi berkas dan pengumuman ujian." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] }
-        }
-      }
-    }
-  </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/mahasiswa.css" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <style>
-    /* Sidebar mobile toggle - checkbox hack */
-    #sidebar-toggle {
-      display: none;
-    }
-
-    #sidebar-overlay {
-      display: none;
-    }
-
-    #sidebar-toggle:checked~#sidebar-overlay {
-      display: block;
-    }
-
-    #sidebar-toggle:checked~#sidebar {
-      transform: translateX(0);
-    }
-
-    .sidebar-link {
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .sidebar-link:hover,
-    .sidebar-link.active {
-      background: rgba(5, 150, 105, 0.12);
-      color: #059669;
-    }
-
-    .sidebar-link.active {
-      font-weight: 600;
-      border-right: 3px solid #059669;
-    }
-
-    .timeline-step:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      left: 15px;
-      top: 32px;
-      bottom: -12px;
-      width: 2px;
-      background: #e2e8f0;
-    }
-
-    .timeline-step.done::before {
-      background: #059669;
-    }
-
-    .card-hover {
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    }
-  </style>
+  
 </head>
 
 <body class="bg-slate-50 font-sans text-slate-700">

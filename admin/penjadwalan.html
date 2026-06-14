@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -7,72 +7,16 @@
   <title>Input Jadwal Ujian – SIDANUS</title>
   <meta name="description"
     content="Form penjadwalan ujian oleh Admin Program Studi – penentuan tanggal, waktu, ruangan, dan dosen penguji." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
-    }
-  </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <style>
-    #sidebar-toggle {
-      display: none;
-    }
-
-    #sidebar-overlay {
-      display: none;
-    }
-
-    #sidebar-toggle:checked~#sidebar-overlay {
-      display: block;
-    }
-
-    #sidebar-toggle:checked~#sidebar {
-      transform: translateX(0);
-    }
-
-    .sidebar-link {
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .sidebar-link:hover,
-    .sidebar-link.active {
-      background: rgba(37, 99, 235, 0.10);
-      color: #1d4ed8;
-    }
-
-    .sidebar-link.active {
-      font-weight: 600;
-      border-right: 3px solid #1d4ed8;
-    }
-
-    .input-style {
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
-      border-radius: 0.75rem;
-      padding: 0.75rem 1rem;
-      width: 100%;
-      font-size: 0.875rem;
-      color: #334155;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .input-style:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-      outline: none;
-      background: #fff;
-    }
-
-    .section-card {
-      background: white;
-      border-radius: 1.25rem;
-      border: 1px solid #f1f5f9;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-      padding: 1.5rem;
-    }
-  </style>
+  
 </head>
 
 <body class="bg-slate-50 font-sans text-slate-700">
