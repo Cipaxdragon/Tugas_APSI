@@ -1,0 +1,58 @@
+/* =============================================================
+   SIDANUS – login.css
+   Styles untuk index.html (halaman login utama)
+   ============================================================= */
+
+/* ── Background Pattern ─────────────────────────────────────── */
+.bg-pattern {
+  background-color: #064e3b;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(16,185,129,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(52,211,153,0.10) 0%, transparent 40%),
+    radial-gradient(circle at 60% 80%, rgba(6,95,70,0.30)   0%, transparent 50%);
+}
+
+/* ── Glass Card ──────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Input Field (login page variant) ───────────────────────── */
+.input-field {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-field:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+  outline: none;
+}
+
+/* ── Primary Button ──────────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
+}
+
+/* ── Demo Shortcut Badges ────────────────────────────────────── */
+.demo-badge {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.demo-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Logo Float Animation ────────────────────────────────────── */
+.float-anim {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}

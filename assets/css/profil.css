@@ -1,0 +1,61 @@
+/* =============================================================
+   SIDANUS – profil.css
+   Styles untuk mahasiswa/profil.html (Profil & Ganti Password)
+   ============================================================= */
+
+/* ── Tab Radio Hack (CSS-only tab switching) ─────────────────── */
+input[type="radio"].tab-radio { display: none; }
+
+/* Default: tampilkan panel profil, sembunyikan panel password */
+#tab-profil:checked  ~ .tab-content #panel-profil  { display: block; }
+#tab-profil:checked  ~ .tab-content #panel-password { display: none; }
+#tab-password:checked ~ .tab-content #panel-profil  { display: none; }
+#tab-password:checked ~ .tab-content #panel-password{ display: block; }
+
+/* Tab label base style */
+.tab-label {
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Active tab styling */
+#tab-profil:checked  ~ .tab-labels label[for="tab-profil"],
+#tab-password:checked ~ .tab-labels label[for="tab-password"] {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+/* ── Password Strength Bar ───────────────────────────────────── */
+.strength-bar {
+  height: 4px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.strength-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease, background 0.4s ease;
+}
+
+/* ── Cover Banner Gradient ───────────────────────────────────── */
+.profile-cover {
+  background: linear-gradient(135deg, #064e3b 0%, #059669 60%, #34d399 100%);
+}
+
+/* ── Avatar Upload Label ─────────────────────────────────────── */
+.avatar-edit-btn {
+  transition: background 0.2s;
+}
+.avatar-edit-btn:hover {
+  background: #047857;
+}

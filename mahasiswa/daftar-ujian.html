@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daftar Ujian – SIDANUS</title>
-  <meta name="description" content="Form pendaftaran ujian proposal, hasil, dan munaqasyah mahasiswa Sistem Informasi." />
+  <meta name="description"
+    content="Form pendaftaran ujian proposal, hasil, dan munaqasyah mahasiswa Sistem Informasi." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] } } }
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <style>
-    #sidebar-toggle { display: none; }
-    #sidebar-overlay { display: none; }
-    #sidebar-toggle:checked ~ #sidebar-overlay { display: block; }
-    #sidebar-toggle:checked ~ #sidebar { transform: translateX(0); }
-    .sidebar-link { transition: background 0.15s, color 0.15s; }
-    .sidebar-link:hover, .sidebar-link.active { background: rgba(5,150,105,0.12); color: #059669; }
-    .sidebar-link.active { font-weight: 600; border-right: 3px solid #059669; }
+    #sidebar-toggle {
+      display: none;
+    }
+
+    #sidebar-overlay {
+      display: none;
+    }
+
+    #sidebar-toggle:checked~#sidebar-overlay {
+      display: block;
+    }
+
+    #sidebar-toggle:checked~#sidebar {
+      transform: translateX(0);
+    }
+
+    .sidebar-link {
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: rgba(5, 150, 105, 0.12);
+      color: #059669;
+    }
+
+    .sidebar-link.active {
+      font-weight: 600;
+      border-right: 3px solid #059669;
+    }
+
     .input-style {
       border: 1px solid #e2e8f0;
       background: #f8fafc;
@@ -30,45 +57,93 @@
       color: #334155;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
+
     .input-style:focus {
       border-color: #059669;
-      box-shadow: 0 0 0 3px rgba(5,150,105,0.12);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
       outline: none;
       background: #fff;
     }
+
     .file-drop {
       border: 2px dashed #d1fae5;
       background: #f0fdf4;
       border-radius: 1rem;
       transition: border-color 0.2s, background 0.2s;
     }
-    .file-drop:hover { border-color: #059669; background: #ecfdf5; }
+
+    .file-drop:hover {
+      border-color: #059669;
+      background: #ecfdf5;
+    }
+
     /* Radio ujian type cards */
-    input[type=radio].radio-card { display: none; }
-    input[type=radio].radio-card + label {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 1.25rem 1rem; border: 2px solid #e2e8f0; border-radius: 1rem;
-      cursor: pointer; transition: all 0.2s; background: white; text-align: center;
+    input[type=radio].radio-card {
+      display: none;
     }
-    input[type=radio].radio-card:checked + label {
-      border-color: #059669; background: #ecfdf5; color: #065f46;
+
+    input[type=radio].radio-card+label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+      text-align: center;
     }
-    input[type=radio].radio-card + label .radio-icon { color: #94a3b8; transition: color 0.2s; }
-    input[type=radio].radio-card:checked + label .radio-icon { color: #059669; }
+
+    input[type=radio].radio-card:checked+label {
+      border-color: #059669;
+      background: #ecfdf5;
+      color: #065f46;
+    }
+
+    input[type=radio].radio-card+label .radio-icon {
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+
+    input[type=radio].radio-card:checked+label .radio-icon {
+      color: #059669;
+    }
 
     /* Accordion via details */
-    details > summary { list-style: none; cursor: pointer; }
-    details > summary::-webkit-details-marker { display: none; }
-    details[open] .chevron { transform: rotate(180deg); }
-    .chevron { transition: transform 0.2s; }
+    details>summary {
+      list-style: none;
+      cursor: pointer;
+    }
 
-    .section-card { background: white; border-radius: 1.25rem; border: 1px solid #f1f5f9; box-shadow: 0 1px 4px rgba(0,0,0,0.04); padding: 1.5rem; }
+    details>summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details[open] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .chevron {
+      transition: transform 0.2s;
+    }
+
+    .section-card {
+      background: white;
+      border-radius: 1.25rem;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      padding: 1.5rem;
+    }
   </style>
 </head>
+
 <body class="bg-slate-50 font-sans text-slate-700">
 
   <input type="checkbox" id="sidebar-toggle" class="peer" />
-  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer" aria-hidden="true"></label>
+  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer"
+    aria-hidden="true"></label>
 
   <!-- Sidebar -->
   <aside id="sidebar"
@@ -76,10 +151,13 @@
     <div class="flex items-center gap-3 p-5 border-b border-slate-100">
       <div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
         <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0v6"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0v6" />
         </svg>
       </div>
-      <div><p class="font-bold text-slate-800 text-sm">SIDANUS</p><p class="text-xs text-slate-400">Portal Mahasiswa</p></div>
+      <div>
+        <p class="font-bold text-slate-800 text-sm">SIDANUS</p>
+        <p class="text-xs text-slate-400">Portal Mahasiswa</p>
+      </div>
     </div>
     <div class="px-5 py-4 bg-emerald-50 border-b border-emerald-100">
       <p class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Masuk sebagai</p>
@@ -87,22 +165,37 @@
       <p class="text-xs text-slate-500">60900121034 · Angkatan 2021</p>
     </div>
     <nav class="flex-1 p-3 space-y-1 overflow-y-auto" aria-label="Menu Mahasiswa">
-      <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <a href="dashboard.html"
+        class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
         Dashboard
       </a>
       <a href="daftar-ujian.html" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
         Daftar Ujian
       </a>
-      <a href="dashboard.html#pengumuman" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+      <a href="dashboard.html#pengumuman"
+        class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
         Pengumuman
       </a>
     </nav>
     <div class="p-3 border-t border-slate-100">
-      <a href="../index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+      <a href="../index.html"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
         Keluar
       </a>
     </div>
@@ -110,22 +203,32 @@
 
   <div class="lg:ml-64 min-h-screen flex flex-col">
     <!-- Navbar -->
-    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
-      <label for="sidebar-toggle" class="lg:hidden cursor-pointer p-2 rounded-lg hover:bg-slate-100" aria-label="Buka menu">
-        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <header
+      class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
+      <label for="sidebar-toggle" class="lg:hidden cursor-pointer p-2 rounded-lg hover:bg-slate-100"
+        aria-label="Buka menu">
+        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </label>
       <h1 class="font-bold text-slate-800 text-base lg:text-lg">Formulir Pendaftaran Ujian</h1>
-      <div class="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white text-xs font-bold">AF</div>
+      <div class="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white text-xs font-bold">AF
+      </div>
     </header>
 
     <main class="flex-1 p-4 sm:p-6 max-w-4xl mx-auto w-full space-y-6">
 
       <!-- Info Banner -->
       <div class="bg-blue-50 border border-blue-100 rounded-2xl p-4 flex gap-3">
-        <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
         <div>
           <p class="text-sm font-semibold text-blue-800">Petunjuk Pendaftaran</p>
-          <p class="text-xs text-blue-600 mt-0.5">Pastikan semua berkas persyaratan telah siap sebelum mengisi formulir ini. Berkas yang tidak lengkap akan dikembalikan untuk dilengkapi. Format file yang diterima: PDF (maks. 5 MB/berkas).</p>
+          <p class="text-xs text-blue-600 mt-0.5">Pastikan semua berkas persyaratan telah siap sebelum mengisi formulir
+            ini. Berkas yang tidak lengkap akan dikembalikan untuk dilengkapi. Format file yang diterima: PDF (maks. 5
+            MB/berkas).</p>
         </div>
       </div>
 
@@ -135,12 +238,14 @@
         <!-- ─── Seksi 1: Data Pribadi ─── -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-5 flex items-center gap-2">
-            <span class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">1</span>
+            <span
+              class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">1</span>
             Data Pribadi Mahasiswa
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="nim">Nomor Induk Mahasiswa (NIM)</label>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="nim">Nomor Induk Mahasiswa
+                (NIM)</label>
               <input type="text" id="nim" name="nim" value="60900121034" class="input-style" />
             </div>
             <div>
@@ -149,7 +254,8 @@
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="prodi">Program Studi</label>
-              <input type="text" id="prodi" name="prodi" value="Sistem Informasi" class="input-style" readonly style="background:#f1f5f9; color:#64748b;" />
+              <input type="text" id="prodi" name="prodi" value="Sistem Informasi" class="input-style" readonly
+                style="background:#f1f5f9; color:#64748b;" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="semester">Semester Saat Ini</label>
@@ -169,7 +275,8 @@
         <!-- ─── Seksi 2: Jenis Ujian ─── -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-5 flex items-center gap-2">
-            <span class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">2</span>
+            <span
+              class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">2</span>
             Pilih Jenis Ujian
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -177,7 +284,10 @@
             <div>
               <input type="radio" class="radio-card" id="ujian-proposal" name="jenis_ujian" value="proposal" />
               <label for="ujian-proposal">
-                <svg class="radio-icon w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <svg class="radio-icon w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 <span class="font-bold text-sm">Ujian Proposal</span>
                 <span class="text-xs text-slate-500 mt-1 block">Presentasi rencana penelitian</span>
               </label>
@@ -186,16 +296,23 @@
             <div>
               <input type="radio" class="radio-card" id="ujian-hasil" name="jenis_ujian" value="hasil" />
               <label for="ujian-hasil">
-                <svg class="radio-icon w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <svg class="radio-icon w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 <span class="font-bold text-sm">Ujian Hasil</span>
                 <span class="text-xs text-slate-500 mt-1 block">Paparan hasil penelitian</span>
               </label>
             </div>
             <!-- Munaqasyah -->
             <div>
-              <input type="radio" class="radio-card" id="ujian-munaqasyah" name="jenis_ujian" value="munaqasyah" checked />
+              <input type="radio" class="radio-card" id="ujian-munaqasyah" name="jenis_ujian" value="munaqasyah"
+                checked />
               <label for="ujian-munaqasyah">
-                <svg class="radio-icon w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                <svg class="radio-icon w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                    d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+                </svg>
                 <span class="font-bold text-sm">Munaqasyah</span>
                 <span class="text-xs text-slate-500 mt-1 block">Ujian akhir skripsi / TA</span>
               </label>
@@ -206,17 +323,21 @@
         <!-- ─── Seksi 3: Data Penelitian ─── -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-5 flex items-center gap-2">
-            <span class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">3</span>
+            <span
+              class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">3</span>
             Data Penelitian
           </h2>
           <div class="space-y-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="judul">Judul Skripsi / Tugas Akhir</label>
-              <textarea id="judul" name="judul" rows="3" class="input-style resize-none">Analisis Penerimaan Sistem ERP Menggunakan Metode Technology Acceptance Model (TAM) pada PT. Sinar Nusantara Makassar</textarea>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="judul">Judul Skripsi / Tugas
+                Akhir</label>
+              <textarea id="judul" name="judul" rows="3"
+                class="input-style resize-none">Analisis Penerimaan Sistem ERP Menggunakan Metode Technology Acceptance Model (TAM) pada PT. Sinar Nusantara Makassar</textarea>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="pembimbing1">Dosen Pembimbing I</label>
+                <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="pembimbing1">Dosen Pembimbing
+                  I</label>
                 <select id="pembimbing1" name="pembimbing1" class="input-style">
                   <option selected>Dr. Andi Sumarni, S.T., M.Kom.</option>
                   <option>Dr. H. Alamsyah, S.T., M.T.</option>
@@ -225,7 +346,8 @@
                 </select>
               </div>
               <div>
-                <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="pembimbing2">Dosen Pembimbing II</label>
+                <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="pembimbing2">Dosen Pembimbing
+                  II</label>
                 <select id="pembimbing2" name="pembimbing2" class="input-style">
                   <option>Pilih Pembimbing II</option>
                   <option selected>Andi Muhammad Ansar, S.Kom., M.T.</option>
@@ -235,8 +357,10 @@
               </div>
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="abstrak">Abstrak Singkat (maks. 300 kata)</label>
-              <textarea id="abstrak" name="abstrak" rows="4" class="input-style resize-none" placeholder="Tuliskan abstrak penelitian Anda...">Penelitian ini bertujuan untuk menganalisis tingkat penerimaan sistem Enterprise Resource Planning (ERP) pada PT. Sinar Nusantara Makassar menggunakan pendekatan Technology Acceptance Model (TAM). Variabel yang diukur meliputi Perceived Usefulness, Perceived Ease of Use, dan Behavioral Intention to Use...</textarea>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="abstrak">Abstrak Singkat (maks. 300
+                kata)</label>
+              <textarea id="abstrak" name="abstrak" rows="4" class="input-style resize-none"
+                placeholder="Tuliskan abstrak penelitian Anda...">Penelitian ini bertujuan untuk menganalisis tingkat penerimaan sistem Enterprise Resource Planning (ERP) pada PT. Sinar Nusantara Makassar menggunakan pendekatan Technology Acceptance Model (TAM). Variabel yang diukur meliputi Perceived Usefulness, Perceived Ease of Use, dan Behavioral Intention to Use...</textarea>
             </div>
           </div>
         </section>
@@ -244,7 +368,8 @@
         <!-- ─── Seksi 4: Upload Berkas ─── -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
-            <span class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">4</span>
+            <span
+              class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">4</span>
             Upload Berkas Persyaratan
           </h2>
           <p class="text-xs text-slate-500 mb-5 ml-9">Format: PDF · Maks. 5 MB per berkas</p>
@@ -257,21 +382,32 @@
               <summary class="flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors">
                 <div class="flex items-center gap-3">
                   <span class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                    </svg>
                   </span>
                   <span class="text-sm font-semibold text-slate-700">Surat Permohonan Ujian</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-xs bg-emerald-100 text-emerald-700 font-medium px-2 py-0.5 rounded-full">Terunggah</span>
-                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  <span
+                    class="text-xs bg-emerald-100 text-emerald-700 font-medium px-2 py-0.5 rounded-full">Terunggah</span>
+                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </summary>
               <div class="p-4 border-t border-slate-100">
                 <div class="file-drop rounded-xl p-5 text-center">
-                  <svg class="w-8 h-8 text-emerald-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                  <svg class="w-8 h-8 text-emerald-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
                   <p class="text-xs font-medium text-slate-600">surat_permohonan_afr.pdf</p>
-                  <p class="text-xs text-emerald-600 font-semibold mt-1">✓ 245 KB · Diunggah 02 Jun 2025</p>
-                  <label for="file-surat" class="mt-3 inline-block text-xs text-slate-500 underline cursor-pointer hover:text-emerald-600">Ganti file</label>
+                  <p class="text-xs text-emerald-600 font-semibold mt-1">✓ 245 KB · Diunggah 02 Jun 2026</p>
+                  <label for="file-surat"
+                    class="mt-3 inline-block text-xs text-slate-500 underline cursor-pointer hover:text-emerald-600">Ganti
+                    file</label>
                   <input type="file" id="file-surat" name="file_surat" accept=".pdf" class="hidden" />
                 </div>
               </div>
@@ -282,20 +418,26 @@
               <summary class="flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors">
                 <div class="flex items-center gap-3">
                   <span class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                    </svg>
                   </span>
                   <span class="text-sm font-semibold text-slate-700">Lembar Persetujuan Pembimbing</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-xs bg-emerald-100 text-emerald-700 font-medium px-2 py-0.5 rounded-full">Terunggah</span>
-                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  <span
+                    class="text-xs bg-emerald-100 text-emerald-700 font-medium px-2 py-0.5 rounded-full">Terunggah</span>
+                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </summary>
               <div class="p-4 border-t border-slate-100">
                 <div class="file-drop rounded-xl p-5 text-center">
                   <p class="text-xs font-medium text-slate-600">lembar_persetujuan_afr.pdf</p>
-                  <p class="text-xs text-emerald-600 font-semibold mt-1">✓ 189 KB · Diunggah 02 Jun 2025</p>
-                  <label for="file-persetujuan" class="mt-2 inline-block text-xs text-slate-500 underline cursor-pointer">Ganti file</label>
+                  <p class="text-xs text-emerald-600 font-semibold mt-1">✓ 189 KB · Diunggah 02 Jun 2026</p>
+                  <label for="file-persetujuan"
+                    class="mt-2 inline-block text-xs text-slate-500 underline cursor-pointer">Ganti file</label>
                   <input type="file" id="file-persetujuan" name="file_persetujuan" accept=".pdf" class="hidden" />
                 </div>
               </div>
@@ -306,20 +448,30 @@
               <summary class="flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors">
                 <div class="flex items-center gap-3">
                   <span class="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 8v4l3 3"/></svg>
+                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 8v4l3 3" />
+                    </svg>
                   </span>
                   <span class="text-sm font-semibold text-slate-700">Transkip Nilai Sementara</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-xs bg-amber-100 text-amber-700 font-medium px-2 py-0.5 rounded-full">Belum Upload</span>
-                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  <span class="text-xs bg-amber-100 text-amber-700 font-medium px-2 py-0.5 rounded-full">Belum
+                    Upload</span>
+                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </summary>
               <div class="p-4 border-t border-slate-100">
                 <div class="file-drop rounded-xl p-5 text-center">
-                  <svg class="w-8 h-8 text-slate-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                  <svg class="w-8 h-8 text-slate-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
                   <p class="text-xs text-slate-500 mb-3">Belum ada file dipilih</p>
-                  <label for="file-transkip" class="inline-block text-xs font-semibold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 px-4 py-2 rounded-lg cursor-pointer transition-colors">
+                  <label for="file-transkip"
+                    class="inline-block text-xs font-semibold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 px-4 py-2 rounded-lg cursor-pointer transition-colors">
                     Pilih File PDF
                   </label>
                   <input type="file" id="file-transkip" name="file_transkip" accept=".pdf" class="hidden" />
@@ -332,19 +484,24 @@
               <summary class="flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors">
                 <div class="flex items-center gap-3">
                   <span class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                    </svg>
                   </span>
                   <span class="text-sm font-semibold text-slate-700">Draft Skripsi (Bab I–V)</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-xs bg-emerald-100 text-emerald-700 font-medium px-2 py-0.5 rounded-full">Terunggah</span>
-                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  <span
+                    class="text-xs bg-emerald-100 text-emerald-700 font-medium px-2 py-0.5 rounded-full">Terunggah</span>
+                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </summary>
               <div class="p-4 border-t border-slate-100">
                 <div class="file-drop rounded-xl p-5 text-center">
                   <p class="text-xs font-medium text-slate-600">draft_skripsi_afr_v2.pdf</p>
-                  <p class="text-xs text-emerald-600 font-semibold mt-1">✓ 4.82 MB · Diunggah 01 Jun 2025</p>
+                  <p class="text-xs text-emerald-600 font-semibold mt-1">✓ 4.82 MB · Diunggah 01 Jun 2026</p>
                 </div>
               </div>
             </details>
@@ -354,20 +511,31 @@
               <summary class="flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors">
                 <div class="flex items-center gap-3">
                   <span class="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 8v4l3 3"/></svg>
+                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 8v4l3 3" />
+                    </svg>
                   </span>
                   <span class="text-sm font-semibold text-slate-700">Bukti Lunas SPP</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-xs bg-amber-100 text-amber-700 font-medium px-2 py-0.5 rounded-full">Belum Upload</span>
-                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  <span class="text-xs bg-amber-100 text-amber-700 font-medium px-2 py-0.5 rounded-full">Belum
+                    Upload</span>
+                  <svg class="chevron w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </summary>
               <div class="p-4 border-t border-slate-100">
                 <div class="file-drop rounded-xl p-5 text-center">
-                  <svg class="w-8 h-8 text-slate-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                  <svg class="w-8 h-8 text-slate-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
                   <p class="text-xs text-slate-500 mb-3">Belum ada file dipilih</p>
-                  <label for="file-spp" class="inline-block text-xs font-semibold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 px-4 py-2 rounded-lg cursor-pointer transition-colors">Pilih File PDF</label>
+                  <label for="file-spp"
+                    class="inline-block text-xs font-semibold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 px-4 py-2 rounded-lg cursor-pointer transition-colors">Pilih
+                    File PDF</label>
                   <input type="file" id="file-spp" name="file_spp" accept=".pdf" class="hidden" />
                 </div>
               </div>
@@ -379,17 +547,20 @@
         <!-- ─── Seksi 5: Konfirmasi ─── -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <span class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">5</span>
+            <span
+              class="w-7 h-7 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center text-xs font-extrabold">5</span>
             Konfirmasi & Pengiriman
           </h2>
           <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-sm text-slate-700 mb-5">
             <div class="flex gap-2">
               <input type="checkbox" id="konfirmasi1" class="mt-0.5 accent-emerald-600" />
-              <label for="konfirmasi1" class="text-xs leading-relaxed">Saya menyatakan bahwa semua data dan berkas yang saya lampirkan adalah benar dan dapat dipertanggungjawabkan.</label>
+              <label for="konfirmasi1" class="text-xs leading-relaxed">Saya menyatakan bahwa semua data dan berkas yang
+                saya lampirkan adalah benar dan dapat dipertanggungjawabkan.</label>
             </div>
             <div class="flex gap-2">
               <input type="checkbox" id="konfirmasi2" class="mt-0.5 accent-emerald-600" />
-              <label for="konfirmasi2" class="text-xs leading-relaxed">Saya memahami bahwa pendaftaran yang telah dikirim tidak dapat diubah dan akan diproses oleh Admin Program Studi.</label>
+              <label for="konfirmasi2" class="text-xs leading-relaxed">Saya memahami bahwa pendaftaran yang telah
+                dikirim tidak dapat diubah dan akan diproses oleh Admin Program Studi.</label>
             </div>
           </div>
           <div class="flex flex-col-reverse sm:flex-row gap-3">
@@ -397,10 +568,12 @@
               class="flex-1 text-center border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold rounded-xl py-3 text-sm transition-colors">
               Batal
             </a>
-            <button type="submit"
-              style="background: linear-gradient(135deg, #059669 0%, #047857 100%);"
+            <button type="submit" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);"
               class="flex-1 text-white font-semibold rounded-xl py-3 text-sm shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
               Kirim Pendaftaran
             </button>
           </div>
@@ -410,8 +583,9 @@
     </main>
 
     <footer class="text-center text-xs text-slate-400 py-4 border-t border-slate-100 mt-auto">
-      &copy; 2025 SIDANUS · Sistem Informasi UIN Alauddin Makassar
+      &copy; 2026 SIDANUS · Sistem Informasi UIN Alauddin Makassar
     </footer>
   </div>
 </body>
+
 </html>

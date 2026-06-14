@@ -1,0 +1,61 @@
+/* =============================================================
+   SIDANUS – notifikasi.css
+   Styles untuk mahasiswa/notifikasi.html
+   ============================================================= */
+
+/* ── Filter Chip Tabs (radio hack) ──────────────────────────── */
+input[type="radio"].notif-filter { display: none; }
+
+input[type="radio"].notif-filter + label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  background: white;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+input[type="radio"].notif-filter:checked + label {
+  background: #059669;
+  border-color: #059669;
+  color: white;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+}
+
+/* ── Notification Item ───────────────────────────────────────── */
+.notif-item {
+  transition: background 0.15s, border-color 0.15s;
+  border-left: 4px solid transparent;
+}
+
+/* Unread (green accent) */
+.notif-item.unread {
+  border-left-color: #059669;
+  background: #f0fdf4;
+}
+.notif-item.unread:hover { background: #dcfce7; }
+
+/* Read */
+.notif-item.read { background: white; }
+.notif-item.read:hover { background: #f8fafc; }
+
+/* Urgent (red accent) */
+.notif-item.urgent { border-left-color: #e11d48; }
+.notif-item.urgent.unread { background: #fff1f2; }
+.notif-item.urgent.unread:hover { background: #ffe4e6; }
+
+/* ── Pulse animation ─────────────────────────────────────────── */
+.pulse {
+  animation: notif-pulse 2s infinite;
+}
+@keyframes notif-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}

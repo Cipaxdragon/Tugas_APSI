@@ -1,0 +1,110 @@
+/* =============================================================
+   SIDANUS – base.css
+   CSS bersama yang digunakan di semua halaman (kecuali login).
+   ============================================================= */
+
+/* ── Google Fonts fallback (sudah di-load via <link> di HTML) ── */
+
+/* ── CSS Custom Properties per Role ──────────────────────────── */
+:root {
+  --role-color:     #059669;   /* default: mahasiswa (emerald) */
+  --role-bg:        rgba(5, 150, 105, 0.12);
+  --role-border:    #059669;
+  --role-light:     #ecfdf5;
+  --role-light-border: #d1fae5;
+}
+
+/* Role overrides — diterapkan di CSS masing-masing halaman */
+.role-admin     { --role-color: #2563eb; --role-bg: rgba(37,99,235,0.10); --role-border: #2563eb; --role-light: #eff6ff; --role-light-border: #dbeafe; }
+.role-pembimbing{ --role-color: #7c3aed; --role-bg: rgba(124,58,237,0.10); --role-border: #7c3aed; --role-light: #f5f3ff; --role-light-border: #ede9fe; }
+.role-kaprodi   { --role-color: #b45309; --role-bg: rgba(180,83,9,0.10);  --role-border: #b45309; --role-light: #fffbeb; --role-light-border: #fde68a; }
+.role-penguji   { --role-color: #be123c; --role-bg: rgba(190,18,60,0.10); --role-border: #be123c; --role-light: #fff1f2; --role-light-border: #fecdd3; }
+
+/* ── Sidebar Checkbox Hack ────────────────────────────────────── */
+#sidebar-toggle          { display: none; }
+#sidebar-overlay         { display: none; }
+#sidebar-toggle:checked ~ #sidebar-overlay { display: block; }
+#sidebar-toggle:checked ~ #sidebar { transform: translateX(0); }
+
+/* ── Sidebar Navigation Links ───────────────────────────────── */
+.sidebar-link {
+  transition: background 0.15s, color 0.15s;
+  border-right: 3px solid transparent;
+}
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: var(--role-bg);
+  color: var(--role-color);
+}
+.sidebar-link.active {
+  font-weight: 600;
+  border-right-color: var(--role-border);
+}
+
+/* ── Form Input Style ───────────────────────────────────────── */
+.input-style {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  font-size: 0.875rem;
+  color: #334155;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+.input-style:focus {
+  border-color: var(--role-border, #059669);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+  outline: none;
+  background: #ffffff;
+}
+.input-style[readonly] {
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: default;
+}
+
+/* ── Section Card ───────────────────────────────────────────── */
+.section-card {
+  background: white;
+  border-radius: 1.25rem;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+}
+
+/* ── Card Hover ──────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Pulse Dot Animation ─────────────────────────────────────── */
+.pulse-dot,
+.pulse {
+  animation: pulse-anim 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse-anim {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ── Details / Accordion ─────────────────────────────────────── */
+details > summary              { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chevron         { transform: rotate(180deg); }
+.chevron { transition: transform 0.2s; }
+
+/* ── Row Hover ───────────────────────────────────────────────── */
+.row-hover { transition: background 0.15s; }
+.row-hover:hover { background: #f0fdf4; }
+
+/* ── Scrollbar Utility ───────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 9999px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }

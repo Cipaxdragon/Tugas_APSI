@@ -1,42 +1,83 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Kaprodi – SIDANUS</title>
-  <meta name="description" content="Dashboard Ketua Program Studi untuk reviu dan persetujuan jadwal ujian yang diusulkan Admin." />
+  <meta name="description"
+    content="Dashboard Ketua Program Studi untuk reviu dan persetujuan jadwal ujian yang diusulkan Admin." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] } } }
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <style>
-    #sidebar-toggle { display: none; }
-    #sidebar-overlay { display: none; }
-    #sidebar-toggle:checked ~ #sidebar-overlay { display: block; }
-    #sidebar-toggle:checked ~ #sidebar { transform: translateX(0); }
-    .sidebar-link { transition: background 0.15s, color 0.15s; }
-    .sidebar-link:hover, .sidebar-link.active { background: rgba(180,83,9,0.10); color: #b45309; }
-    .sidebar-link.active { font-weight: 600; border-right: 3px solid #b45309; }
-    .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
-    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    #sidebar-toggle {
+      display: none;
+    }
+
+    #sidebar-overlay {
+      display: none;
+    }
+
+    #sidebar-toggle:checked~#sidebar-overlay {
+      display: block;
+    }
+
+    #sidebar-toggle:checked~#sidebar {
+      transform: translateX(0);
+    }
+
+    .sidebar-link {
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: rgba(180, 83, 9, 0.10);
+      color: #b45309;
+    }
+
+    .sidebar-link.active {
+      font-weight: 600;
+      border-right: 3px solid #b45309;
+    }
+
+    .card-hover {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
   </style>
 </head>
+
 <body class="bg-slate-50 font-sans text-slate-700">
 
   <input type="checkbox" id="sidebar-toggle" />
-  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer" aria-hidden="true"></label>
+  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer"
+    aria-hidden="true"></label>
 
   <!-- Sidebar -->
   <aside id="sidebar"
     class="fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 flex flex-col">
     <div class="flex items-center gap-3 p-5 border-b border-slate-100">
       <div class="w-9 h-9 bg-amber-600 rounded-xl flex items-center justify-center flex-shrink-0">
-        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
       </div>
-      <div><p class="font-bold text-slate-800 text-sm">SIDANUS</p><p class="text-xs text-slate-400">Ketua Program Studi</p></div>
+      <div>
+        <p class="font-bold text-slate-800 text-sm">SIDANUS</p>
+        <p class="text-xs text-slate-400">Ketua Program Studi</p>
+      </div>
     </div>
     <div class="px-5 py-4 bg-amber-50 border-b border-amber-100">
       <p class="text-xs text-amber-700 font-semibold uppercase tracking-wide">Masuk sebagai</p>
@@ -45,39 +86,59 @@
     </div>
     <nav class="flex-1 p-3 space-y-1 overflow-y-auto" aria-label="Menu Kaprodi">
       <a href="dashboard.html" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
         Persetujuan Jadwal
       </a>
-      <div class="pt-3 pb-1"><p class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3">Laporan</p></div>
+      <div class="pt-3 pb-1">
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3">Laporan</p>
+      </div>
       <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
         Statistik Ujian
       </a>
       <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
         Rekap Kelulusan
       </a>
     </nav>
     <div class="p-3 border-t border-slate-100">
-      <a href="../index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+      <a href="../index.html"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
         Keluar
       </a>
     </div>
   </aside>
 
   <div class="lg:ml-64 min-h-screen flex flex-col">
-    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
+    <header
+      class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
       <label for="sidebar-toggle" class="lg:hidden cursor-pointer p-2 rounded-lg hover:bg-slate-100">
-        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </label>
       <h1 class="font-bold text-slate-800 text-base lg:text-lg">Persetujuan Jadwal & Penguji</h1>
       <div class="flex items-center gap-3">
-        <span class="hidden sm:flex items-center gap-1.5 text-xs font-medium text-amber-700 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-100">
+        <span
+          class="hidden sm:flex items-center gap-1.5 text-xs font-medium text-amber-700 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-100">
           <span class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse"></span>
           2 Menunggu
         </span>
-        <div class="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center text-white text-xs font-bold">KT</div>
+        <div class="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center text-white text-xs font-bold">KT
+        </div>
       </div>
     </header>
 
@@ -111,18 +172,22 @@
       <!-- Review Cards -->
       <section class="space-y-4">
         <h2 class="font-bold text-slate-800 flex items-center gap-2">
-          <svg class="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          <svg class="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
           Jadwal yang Perlu Disetujui
         </h2>
 
         <!-- Review Card 1 -->
         <div class="bg-white rounded-2xl border-2 border-amber-200 shadow-sm overflow-hidden">
-          <div class="bg-amber-50 px-5 py-3 border-b border-amber-100 flex flex-wrap items-center justify-between gap-2">
+          <div
+            class="bg-amber-50 px-5 py-3 border-b border-amber-100 flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
               <span class="text-xs font-bold text-amber-700 uppercase tracking-wide">Menunggu Persetujuan Kaprodi</span>
             </div>
-            <span class="text-xs text-slate-500">Diusulkan Admin: 10 Jun 2025</span>
+            <span class="text-xs text-slate-500">Diusulkan Admin: 10 Jun 2026</span>
           </div>
 
           <div class="p-5 sm:p-6">
@@ -146,7 +211,8 @@
                     </div>
                     <div class="flex justify-between text-xs items-start gap-3">
                       <span class="text-slate-500 font-medium flex-shrink-0">Judul</span>
-                      <span class="font-medium text-slate-700 text-right text-xs leading-relaxed italic">Implementasi Machine Learning untuk Prediksi Mahasiswa Bermasalah di PTKIN</span>
+                      <span class="font-medium text-slate-700 text-right text-xs leading-relaxed italic">Implementasi
+                        Machine Learning untuk Prediksi Mahasiswa Bermasalah di PTKIN</span>
                     </div>
                   </div>
                 </div>
@@ -172,7 +238,7 @@
                   <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 space-y-2">
                     <div class="flex justify-between text-xs">
                       <span class="text-slate-500 font-medium">Tanggal</span>
-                      <span class="font-bold text-blue-800">Senin, 23 Juni 2025</span>
+                      <span class="font-bold text-blue-800">Senin, 23 Juni 2026</span>
                     </div>
                     <div class="flex justify-between text-xs">
                       <span class="text-slate-500 font-medium">Waktu</span>
@@ -210,7 +276,8 @@
 
             <!-- Catatan Kaprodi -->
             <div class="mt-5">
-              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="catatan-kaprodi1">Catatan Kaprodi (opsional)</label>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="catatan-kaprodi1">Catatan Kaprodi
+                (opsional)</label>
               <textarea id="catatan-kaprodi1" rows="2"
                 class="w-full border border-slate-200 bg-slate-50 rounded-xl p-3 text-xs text-slate-700 focus:outline-none focus:border-amber-400 resize-none"
                 placeholder="Catatan atau alasan persetujuan / penolakan...">Jadwal dan komposisi penguji sudah sesuai. Pastikan surat undangan dikirim H-3 sebelum pelaksanaan.</textarea>
@@ -218,15 +285,18 @@
 
             <!-- Action Buttons -->
             <div class="mt-5 flex flex-col sm:flex-row gap-3">
-              <a href="../penguji/dashboard.html"
-                style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%);"
+              <a href="../penguji/dashboard.html" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%);"
                 class="flex-1 text-center text-white font-bold py-3.5 rounded-xl text-sm shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
                 Setujui Jadwal & Penguji
               </a>
               <button
                 class="flex-1 border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-semibold py-3.5 rounded-xl text-sm transition-colors flex items-center justify-center gap-2">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
                 Revisi Jadwal
               </button>
             </div>
@@ -235,12 +305,13 @@
 
         <!-- Review Card 2 -->
         <div class="bg-white rounded-2xl border-2 border-amber-200 shadow-sm overflow-hidden">
-          <div class="bg-amber-50 px-5 py-3 border-b border-amber-100 flex flex-wrap items-center justify-between gap-2">
+          <div
+            class="bg-amber-50 px-5 py-3 border-b border-amber-100 flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
               <span class="text-xs font-bold text-amber-700 uppercase tracking-wide">Menunggu Persetujuan Kaprodi</span>
             </div>
-            <span class="text-xs text-slate-500">Diusulkan Admin: 11 Jun 2025</span>
+            <span class="text-xs text-slate-500">Diusulkan Admin: 11 Jun 2026</span>
           </div>
           <div class="p-5 sm:p-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -248,10 +319,16 @@
                 <div>
                   <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Data Mahasiswa</p>
                   <div class="bg-slate-50 rounded-xl p-4 space-y-2">
-                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Nama</span><span class="font-bold text-slate-800">Nur Hikmah Salsabila</span></div>
-                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">NIM</span><span class="font-semibold text-slate-700">60900121019</span></div>
-                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Jenis</span><span class="font-bold text-blue-700">Ujian Proposal</span></div>
-                    <div class="flex justify-between text-xs items-start gap-3"><span class="text-slate-500 font-medium flex-shrink-0">Judul</span><span class="font-medium text-slate-700 text-right italic">Rancang Bangun Sistem Informasi Manajemen Aset Berbasis Web pada BAPELKES</span></div>
+                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Nama</span><span
+                        class="font-bold text-slate-800">Nur Hikmah Salsabila</span></div>
+                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">NIM</span><span
+                        class="font-semibold text-slate-700">60900121019</span></div>
+                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Jenis</span><span
+                        class="font-bold text-blue-700">Ujian Proposal</span></div>
+                    <div class="flex justify-between text-xs items-start gap-3"><span
+                        class="text-slate-500 font-medium flex-shrink-0">Judul</span><span
+                        class="font-medium text-slate-700 text-right italic">Rancang Bangun Sistem Informasi Manajemen
+                        Aset Berbasis Web pada BAPELKES</span></div>
                   </div>
                 </div>
               </div>
@@ -259,20 +336,25 @@
                 <div>
                   <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Jadwal Diusulkan</p>
                   <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 space-y-2">
-                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Tanggal</span><span class="font-bold text-blue-800">Rabu, 18 Juni 2025</span></div>
-                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Waktu</span><span class="font-bold text-blue-800">13:00 – 15:00 WITA</span></div>
-                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Ruangan</span><span class="font-semibold text-slate-700">Ruang Rapat Jurusan, Lt. 2</span></div>
+                    <div class="flex justify-between text-xs"><span
+                        class="text-slate-500 font-medium">Tanggal</span><span class="font-bold text-blue-800">Rabu, 18
+                        Juni 2026</span></div>
+                    <div class="flex justify-between text-xs"><span class="text-slate-500 font-medium">Waktu</span><span
+                        class="font-bold text-blue-800">13:00 – 15:00 WITA</span></div>
+                    <div class="flex justify-between text-xs"><span
+                        class="text-slate-500 font-medium">Ruangan</span><span
+                        class="font-semibold text-slate-700">Ruang Rapat Jurusan, Lt. 2</span></div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="mt-5 flex flex-col sm:flex-row gap-3">
-              <a href="../penguji/dashboard.html"
-                style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%);"
+              <a href="../penguji/dashboard.html" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%);"
                 class="flex-1 text-center text-white font-bold py-3.5 rounded-xl text-sm shadow-lg hover:opacity-90 transition-opacity">
                 ✓ Setujui Jadwal & Penguji
               </a>
-              <button class="flex-1 border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-semibold py-3.5 rounded-xl text-sm transition-colors">
+              <button
+                class="flex-1 border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-semibold py-3.5 rounded-xl text-sm transition-colors">
                 ✗ Revisi Jadwal
               </button>
             </div>
@@ -289,27 +371,50 @@
           <table class="w-full text-sm min-w-[650px]">
             <thead>
               <tr class="bg-slate-50 border-b border-slate-100">
-                <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Tanggal & Waktu</th>
+                <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Tanggal &
+                  Waktu</th>
                 <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Mahasiswa</th>
-                <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Jenis Ujian</th>
-                <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Ketua Sidang</th>
+                <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Jenis Ujian
+                </th>
+                <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Ketua Sidang
+                </th>
                 <th class="text-left px-5 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-50">
               <tr class="hover:bg-slate-50">
-                <td class="px-5 py-3.5"><p class="text-xs font-semibold text-slate-700 whitespace-nowrap">Senin, 16 Jun 2025</p><p class="text-xs text-slate-400">08:00 – 10:00 WITA</p></td>
-                <td class="px-5 py-3.5"><p class="font-semibold text-slate-700 text-xs">Fatimah Az-Zahra Putri</p><p class="text-xs text-slate-400">60900121005</p></td>
-                <td class="px-5 py-3.5"><span class="text-xs bg-teal-100 text-teal-700 font-semibold px-2 py-0.5 rounded-full">Ujian Hasil</span></td>
+                <td class="px-5 py-3.5">
+                  <p class="text-xs font-semibold text-slate-700 whitespace-nowrap">Senin, 16 Jun 2026</p>
+                  <p class="text-xs text-slate-400">08:00 – 10:00 WITA</p>
+                </td>
+                <td class="px-5 py-3.5">
+                  <p class="font-semibold text-slate-700 text-xs">Fatimah Az-Zahra Putri</p>
+                  <p class="text-xs text-slate-400">60900121005</p>
+                </td>
+                <td class="px-5 py-3.5"><span
+                    class="text-xs bg-teal-100 text-teal-700 font-semibold px-2 py-0.5 rounded-full">Ujian Hasil</span>
+                </td>
                 <td class="px-5 py-3.5 text-xs text-slate-600">Dr. Andi Sumarni</td>
-                <td class="px-5 py-3.5"><span class="text-xs bg-emerald-100 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">✓ Disetujui</span></td>
+                <td class="px-5 py-3.5"><span
+                    class="text-xs bg-emerald-100 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">✓
+                    Disetujui</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
-                <td class="px-5 py-3.5"><p class="text-xs font-semibold text-slate-700 whitespace-nowrap">Jumat, 13 Jun 2025</p><p class="text-xs text-slate-400">10:00 – 12:00 WITA</p></td>
-                <td class="px-5 py-3.5"><p class="font-semibold text-slate-700 text-xs">Dinda Ramadhani Putri</p><p class="text-xs text-slate-400">60900120044</p></td>
-                <td class="px-5 py-3.5"><span class="text-xs bg-emerald-100 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">Munaqasyah</span></td>
+                <td class="px-5 py-3.5">
+                  <p class="text-xs font-semibold text-slate-700 whitespace-nowrap">Jumat, 13 Jun 2026</p>
+                  <p class="text-xs text-slate-400">10:00 – 12:00 WITA</p>
+                </td>
+                <td class="px-5 py-3.5">
+                  <p class="font-semibold text-slate-700 text-xs">Dinda Ramadhani Putri</p>
+                  <p class="text-xs text-slate-400">60900120044</p>
+                </td>
+                <td class="px-5 py-3.5"><span
+                    class="text-xs bg-emerald-100 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">Munaqasyah</span>
+                </td>
                 <td class="px-5 py-3.5 text-xs text-slate-600">Dr. H. Alamsyah, M.T.</td>
-                <td class="px-5 py-3.5"><span class="text-xs bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded-full">✓ Selesai</span></td>
+                <td class="px-5 py-3.5"><span
+                    class="text-xs bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded-full">✓ Selesai</span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -318,8 +423,9 @@
 
     </main>
     <footer class="text-center text-xs text-slate-400 py-4 border-t border-slate-100 mt-auto">
-      &copy; 2025 SIDANUS · Sistem Informasi UIN Alauddin Makassar
+      &copy; 2026 SIDANUS · Sistem Informasi UIN Alauddin Makassar
     </footer>
   </div>
 </body>
+
 </html>

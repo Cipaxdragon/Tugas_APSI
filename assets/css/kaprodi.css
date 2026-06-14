@@ -1,0 +1,54 @@
+/* =============================================================
+   SIDANUS – kaprodi.css
+   Styles untuk kaprodi/dashboard.html
+   Role color: Amber (#b45309)
+   ============================================================= */
+
+/* Override role color variables */
+:root {
+  --role-color:        #b45309;
+  --role-bg:           rgba(180, 83, 9, 0.10);
+  --role-border:       #b45309;
+  --role-light:        #fffbeb;
+  --role-light-border: #fde68a;
+}
+
+/* ── Review Card (Menunggu Persetujuan) ──────────────────────── */
+.review-card {
+  border: 2px solid #fde68a;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+}
+.review-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Approval Button ─────────────────────────────────────────── */
+.btn-approve {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.btn-approve:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* ── Reject / Revisi Button ──────────────────────────────────── */
+.btn-reject {
+  border: 2px solid #fecaca;
+  color: #dc2626;
+  transition: background 0.15s;
+}
+.btn-reject:hover { background: #fef2f2; }
+
+/* ── Stats Box ───────────────────────────────────────────────── */
+.stats-box {
+  background: rgba(255, 255, 255, 0.20);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  text-align: center;
+  transition: background 0.2s;
+}
+.stats-box:hover { background: rgba(255, 255, 255, 0.28); }

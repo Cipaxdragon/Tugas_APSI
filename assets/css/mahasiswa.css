@@ -1,0 +1,66 @@
+/* =============================================================
+   SIDANUS – mahasiswa.css
+   Styles untuk mahasiswa/dashboard.html & daftar-ujian.html
+   Role color: Emerald (#059669) — sudah di :root default base.css
+   ============================================================= */
+
+/* ── Status Timeline ─────────────────────────────────────────── */
+.timeline-step {
+  position: relative;
+}
+.timeline-step::before {
+  content: '';
+  position: absolute;
+  left: 1.15rem;
+  top: 2.5rem;
+  bottom: -1rem;
+  width: 2px;
+  background: #e2e8f0;
+}
+.timeline-step:last-child::before {
+  display: none;
+}
+.timeline-step.done::before   { background: #059669; }
+.timeline-step.active::before { background: linear-gradient(to bottom, #059669, #e2e8f0); }
+
+/* ── Berkas Item ──────────────────────────────────────────────── */
+.berkas-item {
+  transition: background 0.15s, border-color 0.15s;
+}
+.berkas-item:hover {
+  background: #f0fdf4;
+  border-color: #a7f3d0;
+}
+
+/* ── Upload Drop Area ─────────────────────────────────────────── */
+.upload-area {
+  border: 2px dashed #cbd5e1;
+  transition: border-color 0.2s, background 0.2s;
+}
+.upload-area:hover {
+  border-color: #059669;
+  background: #f0fdf4;
+}
+
+/* ── Announcement Card ───────────────────────────────────────── */
+.announcement-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.announcement-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Progress Bar ─────────────────────────────────────────────── */
+.progress-bar {
+  height: 6px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #059669, #34d399);
+  transition: width 0.6s ease;
+}

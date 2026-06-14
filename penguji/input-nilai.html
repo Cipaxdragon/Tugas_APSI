@@ -1,76 +1,166 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Input Nilai & Revisi – SIDANUS</title>
-  <meta name="description" content="Form pengisian nilai ujian, status kelulusan, dan catatan revisi oleh dosen penguji." />
+  <meta name="description"
+    content="Form pengisian nilai ujian, status kelulusan, dan catatan revisi oleh dosen penguji." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] } } }
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <style>
-    #sidebar-toggle { display: none; }
-    #sidebar-overlay { display: none; }
-    #sidebar-toggle:checked ~ #sidebar-overlay { display: block; }
-    #sidebar-toggle:checked ~ #sidebar { transform: translateX(0); }
-    .sidebar-link { transition: background 0.15s, color 0.15s; }
-    .sidebar-link:hover, .sidebar-link.active { background: rgba(225,29,72,0.10); color: #be123c; }
-    .sidebar-link.active { font-weight: 600; border-right: 3px solid #be123c; }
+    #sidebar-toggle {
+      display: none;
+    }
+
+    #sidebar-overlay {
+      display: none;
+    }
+
+    #sidebar-toggle:checked~#sidebar-overlay {
+      display: block;
+    }
+
+    #sidebar-toggle:checked~#sidebar {
+      transform: translateX(0);
+    }
+
+    .sidebar-link {
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: rgba(225, 29, 72, 0.10);
+      color: #be123c;
+    }
+
+    .sidebar-link.active {
+      font-weight: 600;
+      border-right: 3px solid #be123c;
+    }
+
     .input-style {
-      border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 0.75rem;
-      padding: 0.75rem 1rem; width: 100%; font-size: 0.875rem; color: #334155;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      font-size: 0.875rem;
+      color: #334155;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
+
     .input-style:focus {
-      border-color: #e11d48; box-shadow: 0 0 0 3px rgba(225,29,72,0.10); outline: none; background: #fff;
+      border-color: #e11d48;
+      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.10);
+      outline: none;
+      background: #fff;
     }
-    .section-card { background: white; border-radius: 1.25rem; border: 1px solid #f1f5f9; box-shadow: 0 1px 4px rgba(0,0,0,0.04); padding: 1.5rem; }
+
+    .section-card {
+      background: white;
+      border-radius: 1.25rem;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      padding: 1.5rem;
+    }
 
     /* Radio buttons for hasil ujian */
-    input[type=radio].hasil-radio { display: none; }
-    input[type=radio].hasil-radio + label {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 1rem 1.25rem; border: 2px solid #e2e8f0; border-radius: 1rem;
-      cursor: pointer; transition: all 0.2s; background: white;
+    input[type=radio].hasil-radio {
+      display: none;
     }
-    input[type=radio]#hasil-lulus + label { }
-    input[type=radio]#hasil-lulus:checked + label { border-color: #059669; background: #ecfdf5; }
-    input[type=radio]#hasil-revisi:checked + label { border-color: #d97706; background: #fffbeb; }
-    input[type=radio]#hasil-tidak-lulus:checked + label { border-color: #e11d48; background: #fff1f2; }
+
+    input[type=radio].hasil-radio+label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    input[type=radio]#hasil-lulus+label {}
+
+    input[type=radio]#hasil-lulus:checked+label {
+      border-color: #059669;
+      background: #ecfdf5;
+    }
+
+    input[type=radio]#hasil-revisi:checked+label {
+      border-color: #d97706;
+      background: #fffbeb;
+    }
+
+    input[type=radio]#hasil-tidak-lulus:checked+label {
+      border-color: #e11d48;
+      background: #fff1f2;
+    }
 
     /* Score display */
     .score-box {
-      border: 2px solid #e2e8f0; border-radius: 1rem; padding: 1rem;
-      text-align: center; transition: border-color 0.2s, background 0.2s;
+      border: 2px solid #e2e8f0;
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .score-box:focus-within { border-color: #e11d48; background: #fff; }
+
+    .score-box:focus-within {
+      border-color: #e11d48;
+      background: #fff;
+    }
 
     /* Revisi item animation */
-    .revisi-item { transition: background 0.15s; }
-    .revisi-item:hover { background: #f8fafc; }
+    .revisi-item {
+      transition: background 0.15s;
+    }
+
+    .revisi-item:hover {
+      background: #f8fafc;
+    }
 
     /* Previous result card */
-    .prev-result { border-left: 4px solid #059669; }
-    .prev-result.revisi { border-left-color: #d97706; }
+    .prev-result {
+      border-left: 4px solid #059669;
+    }
+
+    .prev-result.revisi {
+      border-left-color: #d97706;
+    }
   </style>
 </head>
+
 <body class="bg-slate-50 font-sans text-slate-700">
 
   <input type="checkbox" id="sidebar-toggle" />
-  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer" aria-hidden="true"></label>
+  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer"
+    aria-hidden="true"></label>
 
   <!-- Sidebar -->
   <aside id="sidebar"
     class="fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 flex flex-col">
     <div class="flex items-center gap-3 p-5 border-b border-slate-100">
       <div class="w-9 h-9 bg-rose-600 rounded-xl flex items-center justify-center flex-shrink-0">
-        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
       </div>
-      <div><p class="font-bold text-slate-800 text-sm">SIDANUS</p><p class="text-xs text-slate-400">Dosen Penguji</p></div>
+      <div>
+        <p class="font-bold text-slate-800 text-sm">SIDANUS</p>
+        <p class="text-xs text-slate-400">Dosen Penguji</p>
+      </div>
     </div>
     <div class="px-5 py-4 bg-rose-50 border-b border-rose-100">
       <p class="text-xs text-rose-600 font-semibold uppercase tracking-wide">Masuk sebagai</p>
@@ -78,30 +168,45 @@
       <p class="text-xs text-slate-500">NIDN 0001057401 · Penguji</p>
     </div>
     <nav class="flex-1 p-3 space-y-1 overflow-y-auto" aria-label="Menu Penguji">
-      <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <a href="dashboard.html"
+        class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
         Jadwal Menguji
       </a>
       <a href="input-nilai.html" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
         Input Nilai & Revisi
       </a>
     </nav>
     <div class="p-3 border-t border-slate-100">
-      <a href="../index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+      <a href="../index.html"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
         Keluar
       </a>
     </div>
   </aside>
 
   <div class="lg:ml-64 min-h-screen flex flex-col">
-    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
+    <header
+      class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
       <label for="sidebar-toggle" class="lg:hidden cursor-pointer p-2 rounded-lg hover:bg-slate-100">
-        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </label>
       <h1 class="font-bold text-slate-800 text-base lg:text-lg">Input Nilai & Catatan Revisi</h1>
-      <div class="w-8 h-8 bg-rose-600 rounded-full flex items-center justify-center text-white text-xs font-bold">ML</div>
+      <div class="w-8 h-8 bg-rose-600 rounded-full flex items-center justify-center text-white text-xs font-bold">ML
+      </div>
     </header>
 
     <main class="flex-1 p-4 sm:p-6 max-w-4xl mx-auto w-full space-y-6">
@@ -119,15 +224,26 @@
           </div>
           <div class="flex flex-col gap-1.5 text-xs">
             <span class="flex items-center gap-2 text-slate-300">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              Senin, 16 Juni 2025 · 08:00–10:00
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Senin, 16 Juni 2026 · 08:00–10:00
             </span>
             <span class="flex items-center gap-2 text-slate-300">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
               Ruang Seminar Lt. 3, Gedung A
             </span>
             <span class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              <svg class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
               <span class="text-teal-300 font-semibold">Ujian Hasil</span>
             </span>
           </div>
@@ -140,10 +256,12 @@
         <!-- Seksi 1: Komponen Nilai -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-5 flex items-center gap-2">
-            <span class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">1</span>
+            <span
+              class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">1</span>
             Komponen Penilaian
           </h2>
-          <p class="text-xs text-slate-500 mb-5 -mt-3 ml-9">Nilai dalam skala 0–100. Nilai akhir dihitung otomatis berdasarkan bobot masing-masing komponen.</p>
+          <p class="text-xs text-slate-500 mb-5 -mt-3 ml-9">Nilai dalam skala 0–100. Nilai akhir dihitung otomatis
+            berdasarkan bobot masing-masing komponen.</p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
@@ -221,7 +339,8 @@
 
           <!-- Computed Final Score -->
           <div class="mt-5 bg-gradient-to-r from-rose-600 to-rose-700 rounded-2xl p-5 text-white text-center">
-            <p class="text-rose-200 text-xs font-semibold uppercase tracking-wider mb-1">Nilai Akhir (Kalkulasi Otomatis)</p>
+            <p class="text-rose-200 text-xs font-semibold uppercase tracking-wider mb-1">Nilai Akhir (Kalkulasi
+              Otomatis)</p>
             <p class="text-6xl font-extrabold">84</p>
             <p class="text-rose-200 text-sm mt-1">≡ Grade <strong class="text-white text-lg">A</strong></p>
             <div class="grid grid-cols-3 gap-3 mt-4 text-xs">
@@ -256,7 +375,8 @@
         <!-- Seksi 2: Status Kelulusan -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-5 flex items-center gap-2">
-            <span class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">2</span>
+            <span
+              class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">2</span>
             Status Kelulusan
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -265,7 +385,10 @@
               <input type="radio" class="hasil-radio" id="hasil-lulus" name="hasil_ujian" value="lulus" checked />
               <label for="hasil-lulus">
                 <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <svg class="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
                 <div>
                   <p class="font-bold text-sm">LULUS</p>
@@ -278,7 +401,10 @@
               <input type="radio" class="hasil-radio" id="hasil-revisi" name="hasil_ujian" value="revisi" />
               <label for="hasil-revisi">
                 <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                  <svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
                 </div>
                 <div>
                   <p class="font-bold text-sm">REVISI</p>
@@ -291,7 +417,10 @@
               <input type="radio" class="hasil-radio" id="hasil-tidak-lulus" name="hasil_ujian" value="tidak_lulus" />
               <label for="hasil-tidak-lulus">
                 <div class="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <svg class="w-6 h-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
                 <div>
                   <p class="font-bold text-sm">TIDAK LULUS</p>
@@ -306,7 +435,8 @@
         <!-- Seksi 3: Catatan Revisi -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-5 flex items-center gap-2">
-            <span class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">3</span>
+            <span
+              class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">3</span>
             Catatan Revisi & Rekomendasi
           </h2>
 
@@ -315,43 +445,61 @@
             <p class="text-xs font-bold text-slate-600 mb-3">Pilihan Revisi Umum (centang yang diperlukan):</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="latar_belakang" />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="latar_belakang" />
                 Perbaikan latar belakang penelitian
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="rumusan_masalah" />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="rumusan_masalah" />
                 Perbaikan rumusan masalah
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="landasan_teori" checked />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="landasan_teori" checked />
                 Penambahan landasan teori
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="metodologi" />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="metodologi" />
                 Perbaikan metodologi penelitian
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="analisis_data" checked />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="analisis_data" checked />
                 Pendalaman analisis data
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="pembahasan" />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="pembahasan" />
                 Perbaikan pembahasan hasil
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="kesimpulan" />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="kesimpulan" />
                 Perbaikan kesimpulan & saran
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
-                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="daftar_pustaka" />
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+                <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]"
+                  value="daftar_pustaka" />
                 Penambahan referensi literatur
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
                 <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="format" />
                 Perbaikan format penulisan
               </label>
-              <label class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
+              <label
+                class="revisi-item flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer text-xs text-slate-700">
                 <input type="checkbox" class="w-4 h-4 accent-rose-600 flex-shrink-0" name="revisi[]" value="lampiran" />
                 Kelengkapan lampiran data
               </label>
@@ -360,7 +508,8 @@
 
           <!-- Catatan Detail -->
           <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-2" for="catatan-detail">Catatan Revisi Detail</label>
+            <label class="block text-xs font-semibold text-slate-600 mb-2" for="catatan-detail">Catatan Revisi
+              Detail</label>
             <textarea id="catatan-detail" name="catatan_detail" rows="5" class="input-style resize-none"
               placeholder="Tuliskan catatan detail revisi untuk mahasiswa...">1. Pada Bab II, tambahkan kajian teori mengenai prinsip-prinsip desain instruksional dalam e-learning, khususnya teori ADDIE atau SAM model untuk memperkuat landasan teoritis.
 
@@ -372,12 +521,15 @@
           <!-- Deadline Revisi -->
           <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="deadline-revisi">Batas Waktu Pengumpulan Revisi</label>
-              <input type="date" id="deadline-revisi" name="deadline_revisi" value="2025-06-30" class="input-style" />
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="deadline-revisi">Batas Waktu
+                Pengumpulan Revisi</label>
+              <input type="date" id="deadline-revisi" name="deadline_revisi" value="2026-06-30" class="input-style" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="tanda-tangan">Konfirmasi Tanda Tangan Digital</label>
-              <input type="text" id="tanda-tangan" name="tanda_tangan" value="Dr. Mustari Lamada, S.Pd., M.T." class="input-style" readonly style="background:#f1f5f9; color:#64748b;" />
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5" for="tanda-tangan">Konfirmasi Tanda
+                Tangan Digital</label>
+              <input type="text" id="tanda-tangan" name="tanda_tangan" value="Dr. Mustari Lamada, S.Pd., M.T."
+                class="input-style" readonly style="background:#f1f5f9; color:#64748b;" />
             </div>
           </div>
         </section>
@@ -385,14 +537,16 @@
         <!-- Previous Results Reference -->
         <section class="section-card">
           <h2 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <span class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">4</span>
+            <span
+              class="w-7 h-7 bg-rose-100 text-rose-700 rounded-lg flex items-center justify-center text-xs font-extrabold">4</span>
             Riwayat Nilai Mahasiswa
           </h2>
           <div class="space-y-3">
             <div class="prev-result revisi bg-amber-50 rounded-xl p-4">
               <div class="flex flex-wrap gap-3 items-start justify-between">
                 <div>
-                  <p class="text-xs font-bold text-amber-700 uppercase tracking-wide mb-1">Ujian Proposal · 15 Maret 2025</p>
+                  <p class="text-xs font-bold text-amber-700 uppercase tracking-wide mb-1">Ujian Proposal · 15 Maret
+                    2026</p>
                   <p class="text-xs text-slate-600">Penguji: Dr. Mustari Lamada, M.T. & Dr. H. Alamsyah, M.T.</p>
                 </div>
                 <div class="text-right">
@@ -415,10 +569,15 @@
         <!-- Submit -->
         <section class="section-card">
           <div class="bg-amber-50 border border-amber-100 rounded-xl p-4 mb-5 flex gap-3">
-            <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
             <div>
               <p class="text-xs font-bold text-amber-800">Perhatian</p>
-              <p class="text-xs text-amber-700 mt-0.5">Nilai yang telah dikumpulkan tidak dapat diubah. Pastikan semua nilai dan catatan sudah benar sebelum menyimpan.</p>
+              <p class="text-xs text-amber-700 mt-0.5">Nilai yang telah dikumpulkan tidak dapat diubah. Pastikan semua
+                nilai dan catatan sudah benar sebelum menyimpan.</p>
             </div>
           </div>
           <div class="flex flex-col-reverse sm:flex-row gap-3">
@@ -426,10 +585,12 @@
               class="flex-1 text-center border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold rounded-xl py-3 text-sm transition-colors">
               ← Kembali
             </a>
-            <button type="submit"
-              style="background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);"
+            <button type="submit" style="background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);"
               class="flex-1 text-white font-bold rounded-xl py-3.5 text-sm shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               Simpan Nilai & Catatan Revisi
             </button>
           </div>
@@ -439,8 +600,9 @@
     </main>
 
     <footer class="text-center text-xs text-slate-400 py-4 border-t border-slate-100 mt-auto">
-      &copy; 2025 SIDANUS · Sistem Informasi UIN Alauddin Makassar
+      &copy; 2026 SIDANUS · Sistem Informasi UIN Alauddin Makassar
     </footer>
   </div>
 </body>
+
 </html>

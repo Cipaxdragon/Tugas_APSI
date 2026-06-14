@@ -1,34 +1,77 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Admin – SIDANUS</title>
-  <meta name="description" content="Dashboard Admin Program Studi untuk verifikasi berkas pendaftaran ujian mahasiswa." />
+  <meta name="description"
+    content="Dashboard Admin Program Studi untuk verifikasi berkas pendaftaran ujian mahasiswa." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] } } }
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <style>
-    #sidebar-toggle { display: none; }
-    #sidebar-overlay { display: none; }
-    #sidebar-toggle:checked ~ #sidebar-overlay { display: block; }
-    #sidebar-toggle:checked ~ #sidebar { transform: translateX(0); }
-    .sidebar-link { transition: background 0.15s, color 0.15s; }
-    .sidebar-link:hover, .sidebar-link.active { background: rgba(37,99,235,0.10); color: #1d4ed8; }
-    .sidebar-link.active { font-weight: 600; border-right: 3px solid #1d4ed8; }
-    .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
-    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-    .badge { display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.65rem; border-radius: 9999px; }
+    #sidebar-toggle {
+      display: none;
+    }
+
+    #sidebar-overlay {
+      display: none;
+    }
+
+    #sidebar-toggle:checked~#sidebar-overlay {
+      display: block;
+    }
+
+    #sidebar-toggle:checked~#sidebar {
+      transform: translateX(0);
+    }
+
+    .sidebar-link {
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: rgba(37, 99, 235, 0.10);
+      color: #1d4ed8;
+    }
+
+    .sidebar-link.active {
+      font-weight: 600;
+      border-right: 3px solid #1d4ed8;
+    }
+
+    .card-hover {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+    }
   </style>
 </head>
+
 <body class="bg-slate-50 font-sans text-slate-700">
 
   <input type="checkbox" id="sidebar-toggle" />
-  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer" aria-hidden="true"></label>
+  <label id="sidebar-overlay" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden cursor-pointer"
+    aria-hidden="true"></label>
 
   <!-- Sidebar -->
   <aside id="sidebar"
@@ -36,10 +79,14 @@
     <div class="flex items-center gap-3 p-5 border-b border-slate-100">
       <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
         <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       </div>
-      <div><p class="font-bold text-slate-800 text-sm">SIDANUS</p><p class="text-xs text-slate-400">Admin Program Studi</p></div>
+      <div>
+        <p class="font-bold text-slate-800 text-sm">SIDANUS</p>
+        <p class="text-xs text-slate-400">Admin Program Studi</p>
+      </div>
     </div>
     <div class="px-5 py-4 bg-blue-50 border-b border-blue-100">
       <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Masuk sebagai</p>
@@ -48,43 +95,68 @@
     </div>
     <nav class="flex-1 p-3 space-y-1 overflow-y-auto" aria-label="Menu Admin">
       <a href="dashboard.html" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
         Dashboard Verifikasi
       </a>
-      <a href="penjadwalan.html" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      <a href="penjadwalan.html"
+        class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
         Input Jadwal Ujian
       </a>
-      <div class="pt-3 pb-1"><p class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3">Referensi</p></div>
+      <div class="pt-3 pb-1">
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3">Referensi</p>
+      </div>
       <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0" />
+        </svg>
         Data Dosen
       </a>
       <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600">
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
         Data Ruangan
       </a>
     </nav>
     <div class="p-3 border-t border-slate-100">
-      <a href="../index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+      <a href="../index.html"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
         Keluar
       </a>
     </div>
   </aside>
 
   <div class="lg:ml-64 min-h-screen flex flex-col">
-    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
-      <label for="sidebar-toggle" class="lg:hidden cursor-pointer p-2 rounded-lg hover:bg-slate-100" aria-label="Buka menu">
-        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <header
+      class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-100 px-4 sm:px-6 h-16 flex items-center justify-between">
+      <label for="sidebar-toggle" class="lg:hidden cursor-pointer p-2 rounded-lg hover:bg-slate-100"
+        aria-label="Buka menu">
+        <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </label>
       <h1 class="font-bold text-slate-800 text-base lg:text-lg">Verifikasi Berkas Pendaftaran</h1>
       <div class="flex items-center gap-3">
-        <span class="hidden sm:flex items-center gap-1.5 text-xs font-medium text-amber-700 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-100">
+        <span
+          class="hidden sm:flex items-center gap-1.5 text-xs font-medium text-amber-700 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-100">
           <span class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse"></span>
           5 Pending
         </span>
-        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">SR</div>
+        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">SR
+        </div>
       </div>
     </header>
 
@@ -95,7 +167,7 @@
         <div class="card-hover bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
           <p class="text-3xl font-extrabold text-slate-800">12</p>
           <p class="text-xs text-slate-500 mt-1 font-medium">Total Masuk</p>
-          <p class="text-xs text-blue-500 font-semibold mt-0.5">Bulan Juni 2025</p>
+          <p class="text-xs text-blue-500 font-semibold mt-0.5">Bulan Juni 2026</p>
         </div>
         <div class="card-hover bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
           <p class="text-3xl font-extrabold text-amber-500">5</p>
@@ -119,13 +191,15 @@
         <div class="flex flex-wrap gap-3">
           <input type="text" placeholder="Cari nama / NIM mahasiswa..."
             class="flex-1 min-w-48 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100" />
-          <select class="border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-400">
+          <select
+            class="border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-400">
             <option>Semua Jenis Ujian</option>
             <option>Ujian Proposal</option>
             <option>Ujian Hasil</option>
             <option>Munaqasyah</option>
           </select>
-          <select class="border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-400">
+          <select
+            class="border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-blue-400">
             <option>Semua Status</option>
             <option>Menunggu</option>
             <option>Disetujui</option>
@@ -146,10 +220,14 @@
             <thead>
               <tr class="bg-slate-50 border-b border-slate-100">
                 <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">No</th>
-                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Mahasiswa</th>
-                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Judul Penelitian</th>
-                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Jenis Ujian</th>
-                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Tgl. Daftar</th>
+                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Mahasiswa
+                </th>
+                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Judul
+                  Penelitian</th>
+                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Jenis Ujian
+                </th>
+                <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Tgl. Daftar
+                </th>
                 <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Berkas</th>
                 <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
                 <th class="text-left px-5 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider">Aksi</th>
@@ -165,12 +243,13 @@
                   <p class="text-xs text-slate-400">60900121034</p>
                 </td>
                 <td class="px-5 py-4">
-                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Analisis Penerimaan Sistem ERP Menggunakan Metode TAM</p>
+                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Analisis Penerimaan Sistem ERP Menggunakan
+                    Metode TAM</p>
                 </td>
                 <td class="px-5 py-4">
                   <span class="badge bg-purple-100 text-purple-700">Munaqasyah</span>
                 </td>
-                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">02 Jun 2025</td>
+                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">02 Jun 2026</td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-1">
                     <span class="text-xs text-emerald-600 font-medium">✓ Surat Permohonan</span>
@@ -185,9 +264,15 @@
                 </td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-2">
-                    <button class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">✓ Setujui</button>
-                    <button class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">✗ Kembalikan</button>
-                    <a href="#" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline whitespace-nowrap">Lihat Detail</a>
+                    <button
+                      class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">✓
+                      Setujui</button>
+                    <button
+                      class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">✗
+                      Kembalikan</button>
+                    <a href="#"
+                      class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline whitespace-nowrap">Lihat
+                      Detail</a>
                   </div>
                 </td>
               </tr>
@@ -200,12 +285,13 @@
                   <p class="text-xs text-slate-400">60900121019</p>
                 </td>
                 <td class="px-5 py-4">
-                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Rancang Bangun Sistem Informasi Manajemen Aset Berbasis Web pada BAPELKES</p>
+                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Rancang Bangun Sistem Informasi Manajemen
+                    Aset Berbasis Web pada BAPELKES</p>
                 </td>
                 <td class="px-5 py-4">
                   <span class="badge bg-blue-100 text-blue-700">Proposal</span>
                 </td>
-                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">03 Jun 2025</td>
+                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">03 Jun 2026</td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-1">
                     <span class="text-xs text-emerald-600 font-medium">✓ Surat Permohonan</span>
@@ -220,9 +306,14 @@
                 </td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-2">
-                    <button class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors">✓ Setujui</button>
-                    <button class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors">✗ Kembalikan</button>
-                    <a href="#" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline">Lihat Detail</a>
+                    <button
+                      class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors">✓
+                      Setujui</button>
+                    <button
+                      class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors">✗
+                      Kembalikan</button>
+                    <a href="#" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline">Lihat
+                      Detail</a>
                   </div>
                 </td>
               </tr>
@@ -235,12 +326,13 @@
                   <p class="text-xs text-slate-400">60900120057</p>
                 </td>
                 <td class="px-5 py-4">
-                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Implementasi Machine Learning untuk Prediksi Mahasiswa Bermasalah di PTKIN</p>
+                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Implementasi Machine Learning untuk
+                    Prediksi Mahasiswa Bermasalah di PTKIN</p>
                 </td>
                 <td class="px-5 py-4">
                   <span class="badge bg-emerald-100 text-emerald-700">Munaqasyah</span>
                 </td>
-                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">28 Mei 2025</td>
+                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">28 Mei 2026</td>
                 <td class="px-5 py-4">
                   <span class="text-xs text-emerald-600 font-semibold">✓ Semua Lengkap</span>
                 </td>
@@ -249,8 +341,11 @@
                 </td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-2">
-                    <a href="penjadwalan.html" class="text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 px-3 py-1.5 rounded-lg transition-colors text-center">📅 Jadwalkan</a>
-                    <a href="#" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">Lihat Detail</a>
+                    <a href="penjadwalan.html"
+                      class="text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 px-3 py-1.5 rounded-lg transition-colors text-center">📅
+                      Jadwalkan</a>
+                    <a href="#" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">Lihat
+                      Detail</a>
                   </div>
                 </td>
               </tr>
@@ -263,12 +358,13 @@
                   <p class="text-xs text-slate-400">60900121042</p>
                 </td>
                 <td class="px-5 py-4">
-                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Evaluasi Usabilitas Aplikasi SIAKAD Menggunakan Metode System Usability Scale</p>
+                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Evaluasi Usabilitas Aplikasi SIAKAD
+                    Menggunakan Metode System Usability Scale</p>
                 </td>
                 <td class="px-5 py-4">
                   <span class="badge bg-teal-100 text-teal-700">Ujian Hasil</span>
                 </td>
-                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">04 Jun 2025</td>
+                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">04 Jun 2026</td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-1">
                     <span class="text-xs text-emerald-600 font-medium">✓ Surat Permohonan</span>
@@ -281,9 +377,14 @@
                 </td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-2">
-                    <button class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors">✓ Setujui</button>
-                    <button class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors">✗ Kembalikan</button>
-                    <a href="#" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline">Lihat Detail</a>
+                    <button
+                      class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors">✓
+                      Setujui</button>
+                    <button
+                      class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors">✗
+                      Kembalikan</button>
+                    <a href="#" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline">Lihat
+                      Detail</a>
                   </div>
                 </td>
               </tr>
@@ -296,12 +397,13 @@
                   <p class="text-xs text-slate-400">60900120083</p>
                 </td>
                 <td class="px-5 py-4">
-                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Perancangan Sistem Informasi Perpustakaan Digital Berbasis Android</p>
+                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Perancangan Sistem Informasi Perpustakaan
+                    Digital Berbasis Android</p>
                 </td>
                 <td class="px-5 py-4">
                   <span class="badge bg-blue-100 text-blue-700">Proposal</span>
                 </td>
-                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">01 Jun 2025</td>
+                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">01 Jun 2026</td>
                 <td class="px-5 py-4">
                   <span class="text-xs text-rose-500 font-semibold">✗ Tidak Lengkap (2 berkas)</span>
                 </td>
@@ -310,7 +412,8 @@
                 </td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-2">
-                    <a href="#" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">Lihat Catatan</a>
+                    <a href="#" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">Lihat
+                      Catatan</a>
                   </div>
                 </td>
               </tr>
@@ -323,12 +426,13 @@
                   <p class="text-xs text-slate-400">60900120091</p>
                 </td>
                 <td class="px-5 py-4">
-                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Analisis Keamanan Jaringan Komputer Menggunakan Metode Penetration Testing</p>
+                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Analisis Keamanan Jaringan Komputer
+                    Menggunakan Metode Penetration Testing</p>
                 </td>
                 <td class="px-5 py-4">
                   <span class="badge bg-emerald-100 text-emerald-700">Munaqasyah</span>
                 </td>
-                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">30 Mei 2025</td>
+                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">30 Mei 2026</td>
                 <td class="px-5 py-4">
                   <span class="text-xs text-emerald-600 font-semibold">✓ Semua Lengkap</span>
                 </td>
@@ -337,8 +441,11 @@
                 </td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-2">
-                    <a href="penjadwalan.html" class="text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 px-3 py-1.5 rounded-lg transition-colors text-center">📅 Jadwalkan</a>
-                    <a href="#" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">Lihat Detail</a>
+                    <a href="penjadwalan.html"
+                      class="text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 px-3 py-1.5 rounded-lg transition-colors text-center">📅
+                      Jadwalkan</a>
+                    <a href="#" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">Lihat
+                      Detail</a>
                   </div>
                 </td>
               </tr>
@@ -351,12 +458,13 @@
                   <p class="text-xs text-slate-400">60900121005</p>
                 </td>
                 <td class="px-5 py-4">
-                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Pengembangan E-Learning Berbasis Moodle untuk Pesantren Modern</p>
+                  <p class="text-xs text-slate-600 max-w-xs leading-relaxed">Pengembangan E-Learning Berbasis Moodle
+                    untuk Pesantren Modern</p>
                 </td>
                 <td class="px-5 py-4">
                   <span class="badge bg-teal-100 text-teal-700">Ujian Hasil</span>
                 </td>
-                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">05 Jun 2025</td>
+                <td class="px-5 py-4 text-xs text-slate-600 whitespace-nowrap">05 Jun 2026</td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-1">
                     <span class="text-xs text-emerald-600 font-medium">✓ Surat Permohonan</span>
@@ -371,9 +479,14 @@
                 </td>
                 <td class="px-5 py-4">
                   <div class="flex flex-col gap-2">
-                    <button class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors">✓ Setujui</button>
-                    <button class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors">✗ Kembalikan</button>
-                    <a href="#" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline">Lihat Detail</a>
+                    <button
+                      class="text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg transition-colors">✓
+                      Setujui</button>
+                    <button
+                      class="text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 px-3 py-1.5 rounded-lg transition-colors">✗
+                      Kembalikan</button>
+                    <a href="#" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline">Lihat
+                      Detail</a>
                   </div>
                 </td>
               </tr>
@@ -386,18 +499,22 @@
         <div class="flex items-center justify-between px-5 py-4 border-t border-slate-100">
           <p class="text-xs text-slate-500">Halaman 1 dari 2</p>
           <div class="flex gap-2">
-            <button class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-400 cursor-not-allowed">← Prev</button>
+            <button class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-400 cursor-not-allowed">←
+              Prev</button>
             <button class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg font-semibold">1</button>
-            <button class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">2</button>
-            <button class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">Next →</button>
+            <button
+              class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">2</button>
+            <button class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">Next
+              →</button>
           </div>
         </div>
       </section>
 
     </main>
     <footer class="text-center text-xs text-slate-400 py-4 border-t border-slate-100 mt-auto">
-      &copy; 2025 SIDANUS · Sistem Informasi UIN Alauddin Makassar
+      &copy; 2026 SIDANUS · Sistem Informasi UIN Alauddin Makassar
     </footer>
   </div>
 </body>
+
 </html>

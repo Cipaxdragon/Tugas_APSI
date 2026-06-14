@@ -1,0 +1,112 @@
+/* =============================================================
+   SIDANUS – sk-kelulusan.css
+   Styles untuk mahasiswa/sk-kelulusan.html
+   Termasuk @media print untuk layout cetak A4.
+   ============================================================= */
+
+/* ── Document Paper ──────────────────────────────────────────── */
+.sk-paper {
+  background: white;
+  max-width: 760px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top color strip */
+.sk-paper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #064e3b 0%, #059669 50%, #34d399 100%);
+}
+
+/* ── Watermark ───────────────────────────────────────────────── */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 7rem;
+  font-weight: 900;
+  color: rgba(5, 150, 105, 0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.2em;
+}
+
+/* ── QR Code Placeholder ─────────────────────────────────────── */
+.qr-box {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+}
+
+/* ── Official Seal ───────────────────────────────────────────── */
+.seal {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px double #059669;
+  background: radial-gradient(circle, #ecfdf5 0%, #d1fae5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ── Status Lulus Badge ──────────────────────────────────────── */
+.status-lulus {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 2px solid #059669;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  display: inline-block;
+}
+
+/* ── Score Table Row ─────────────────────────────────────────── */
+.score-row td {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+}
+.score-row:nth-child(even) td {
+  background: #f8fafc;
+}
+
+/* ── Print Styles ────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+
+  body { background: white !important; }
+
+  #sidebar,
+  header,
+  footer,
+  .action-bar,
+  nav { display: none !important; }
+
+  .lg\:ml-64 { margin-left: 0 !important; }
+
+  .sk-paper {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 1.5cm !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+}

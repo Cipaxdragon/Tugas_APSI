@@ -1,0 +1,68 @@
+/* =============================================================
+   SIDANUS – pembimbing.css
+   Styles untuk pembimbing/dashboard.html
+   Role color: Violet (#7c3aed)
+   ============================================================= */
+
+/* Override role color variables */
+:root {
+  --role-color:        #7c3aed;
+  --role-bg:           rgba(124, 58, 237, 0.10);
+  --role-border:       #7c3aed;
+  --role-light:        #f5f3ff;
+  --role-light-border: #ede9fe;
+}
+
+/* ── Accordion Student Card ──────────────────────────────────── */
+.student-accordion > summary {
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.15s;
+}
+.student-accordion > summary::-webkit-details-marker { display: none; }
+.student-accordion[open] > summary { background: #f5f3ff; }
+.student-accordion > summary:hover { background: #faf5ff; }
+
+/* Chevron rotation on open */
+.student-accordion[open] .acc-chevron { transform: rotate(180deg); }
+.acc-chevron { transition: transform 0.2s ease; }
+
+/* ── ACC Checkbox Peer Hack ──────────────────────────────────── */
+/* Tailwind peer classes handle this, but ensure base state */
+.acc-checkbox { display: none; }
+
+/* ── Bimbingan Status Chips ──────────────────────────────────── */
+.chip-approved {
+  background: #dcfce7;
+  color: #14532d;
+  border: 1px solid #86efac;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+}
+.chip-pending {
+  background: #fef3c7;
+  color: #78350f;
+  border: 1px solid #fde68a;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+}
+.chip-rejected {
+  background: #fee2e2;
+  color: #7f1d1d;
+  border: 1px solid #fca5a5;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+}
+
+/* ── Student Item Hover ──────────────────────────────────────── */
+.student-item {
+  transition: background 0.15s;
+  border-left: 3px solid transparent;
+}
+.student-item:hover { background: #faf5ff; border-left-color: #a78bfa; }

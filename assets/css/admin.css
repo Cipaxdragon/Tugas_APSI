@@ -1,0 +1,74 @@
+/* =============================================================
+   SIDANUS – admin.css
+   Styles untuk admin/dashboard.html & admin/penjadwalan.html
+   Role color: Blue (#2563eb)
+   ============================================================= */
+
+/* Override role color variables */
+:root {
+  --role-color:        #2563eb;
+  --role-bg:           rgba(37, 99, 235, 0.10);
+  --role-border:       #2563eb;
+  --role-light:        #eff6ff;
+  --role-light-border: #dbeafe;
+}
+
+/* ── Status Badge styles ─────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.status-menunggu  { background: #fef3c7; color: #92400e; }
+.status-proses    { background: #dbeafe; color: #1e40af; }
+.status-selesai   { background: #dcfce7; color: #14532d; }
+.status-ditolak   { background: #fee2e2; color: #991b1b; }
+
+/* ── Action Button ───────────────────────────────────────────── */
+.action-btn {
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+.action-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* ── Stat Card ───────────────────────────────────────────────── */
+.stat-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+/* ── Form Section Separator ──────────────────────────────────── */
+.form-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 1rem;
+}
+
+/* ── Penguji Selection Tag ───────────────────────────────────── */
+.penguji-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1e40af;
+}
