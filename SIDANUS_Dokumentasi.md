@@ -40,8 +40,6 @@ APSI_3/
 │   ├── dashboard.html            ← Verifikasi berkas mahasiswa
 │   └── penjadwalan.html          ← Input & edit jadwal ujian
 │
-├── pembimbing/
-│   └── dashboard.html            ← ACC berkas bimbingan
 │
 ├── kaprodi/
 │   └── dashboard.html            ← Persetujuan jadwal & penguji
@@ -59,7 +57,6 @@ APSI_3/
     │   ├── notifikasi.css        ← Khusus notifikasi.html
     │   ├── sk-kelulusan.css      ← Khusus SK + @media print
     │   ├── admin.css             ← Khusus admin/ (biru)
-    │   ├── pembimbing.css        ← Khusus pembimbing/ (violet)
     │   ├── kaprodi.css           ← Khusus kaprodi/ (amber)
     │   ├── penguji.css           ← Khusus penguji/ (rose)
     │   └── public.css            ← Khusus jadwal-publik.html
@@ -101,16 +98,8 @@ admin/dashboard.html
     └──► admin/penjadwalan.html  (input tanggal, ruang, penguji)
 ```
 
-### 🟣 Dosen Pembimbing
-```
-index.html (Login)
-    │
-    ▼
-pembimbing/dashboard.html
-    ├── Lihat daftar bimbingan (per mahasiswa)
-    ├── Buka detail berkas (accordion)
-    └── Klik ACC / Tolak berkas bimbingan
-```
+> [!NOTE]
+> Role "Dosen Pembimbing" telah dihapus dari sistem. Proses bimbingan dan persetujuan dilakukan secara offline. Mahasiswa cukup mengunggah scan Bukti Persetujuan Pembimbing sebagai salah satu berkas persyaratan.
 
 ### 🟡 Kaprodi
 ```
@@ -150,16 +139,10 @@ index.html  ──► jadwal-publik.html
 ## 4. Alur Proses Bisnis (Business Flow)
 
 ```
-[MAHASISWA] Isi Form Pendaftaran
+[MAHASISWA] Isi Form Pendaftaran + Upload Berkas (termasuk scan ACC pembimbing)
         │
         ▼
-[SISTEM]   Simpan & kirim notifikasi ke Pembimbing
-        │
-        ▼
-[PEMBIMBING] Buka dashboard → Review berkas → Klik ACC
-        │
-        ▼
-[ADMIN]    Verifikasi berkas lengkap → Approve/Tolak
+[ADMIN]    Verifikasi semua berkas lengkap → Approve/Tolak
         │ (jika Approve)
         ▼
 [ADMIN]    Input usulan jadwal di penjadwalan.html
@@ -294,7 +277,6 @@ Setiap role memiliki warna aksen berbeda yang dikontrol via CSS variable `--role
 |------|-------------|-----|----------|
 | Mahasiswa | Emerald | `#059669` | `mahasiswa.css` (default) |
 | Admin Prodi | Blue | `#2563eb` | `admin.css` |
-| Pembimbing | Violet | `#7c3aed` | `pembimbing.css` |
 | Kaprodi | Amber | `#b45309` | `kaprodi.css` |
 | Penguji | Rose | `#be123c` | `penguji.css` |
 
@@ -374,7 +356,7 @@ CSS di `assets/css/notifikasi.css` (baris 4–20) dan `public.css` (baris 18–3
 ---
 
 ### 7.4 Accordion (Details/Summary)
-Dipakai di: `notifikasi.html`, `pembimbing/dashboard.html`, `penguji/input-nilai.html`
+Dipakai di: `notifikasi.html`, `penguji/input-nilai.html`
 
 ```html
 <details class="notif-item unread">

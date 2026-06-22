@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
    SIDANUS – base.css
    CSS bersama yang digunakan di semua halaman (kecuali login).
    ============================================================= */
@@ -16,7 +16,6 @@
 
 /* Role overrides — diterapkan di CSS masing-masing halaman */
 .role-admin     { --role-color: #2563eb; --role-bg: rgba(37,99,235,0.10); --role-border: #2563eb; --role-light: #eff6ff; --role-light-border: #dbeafe; }
-.role-pembimbing{ --role-color: #7c3aed; --role-bg: rgba(124,58,237,0.10); --role-border: #7c3aed; --role-light: #f5f3ff; --role-light-border: #ede9fe; }
 .role-kaprodi   { --role-color: #b45309; --role-bg: rgba(180,83,9,0.10);  --role-border: #b45309; --role-light: #fffbeb; --role-light-border: #fde68a; }
 .role-penguji   { --role-color: #be123c; --role-bg: rgba(190,18,60,0.10); --role-border: #be123c; --role-light: #fff1f2; --role-light-border: #fecdd3; }
 
