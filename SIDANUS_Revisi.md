@@ -1,7 +1,7 @@
 # 📝 Dokumentasi Hasil Revisi SIDANUS
 
 **Sistem Informasi Pendaftaran Ujian — Jurusan Sistem Informasi**  
-UIN Alauddin Makassar · Tanggal Revisi: 20 Juni 2026
+UIN Alauddin Makassar · Terakhir Diperbarui: 24 Juni 2026
 
 ---
 
@@ -12,6 +12,11 @@ UIN Alauddin Makassar · Tanggal Revisi: 20 Juni 2026
 | 1 | Inputan Dosen Pembimbing: Dropdown → Readonly | `mahasiswa/daftar-ujian.html` | ✅ Selesai |
 | 2 | Berkas Persyaratan Ujian: Statis → Dinamis per Jenis Ujian | `mahasiswa/daftar-ujian.html`, `assets/css/mahasiswa.css` | ✅ Selesai |
 | 3 | Penghapusan Role "Dosen Pembimbing" dari Sistem | `pembimbing/dashboard.html`, `assets/css/pembimbing.css`, `index.html`, `SIDANUS_Dokumentasi.md` | ✅ Selesai |
+| 4 | Prioritas Tampilan Mobile: Jadwal & Hasil di Atas | `mahasiswa/dashboard.html` | ✅ Selesai |
+| 5 | Penyederhanaan Sidebar: Hapus Pintasan "Pengumuman" & "Jadwal" | Semua file `mahasiswa/*.html` | ✅ Selesai |
+| 6 | Sinkronisasi Berkas Syarat Munaqasyah | `mahasiswa/notifikasi.html`, `mahasiswa/daftar-ujian.html` | ✅ Selesai |
+| 7 | Perbaikan Inkonsistensi Judul SK Kelulusan | `mahasiswa/sk-kelulusan.html` | ✅ Selesai |
+
 
 ---
 
@@ -271,6 +276,105 @@ Mahasiswa Upload Berkas (termasuk scan ACC pembimbing fisik)
 
 ---
 
+## Revisi 4: Prioritas Tampilan Mobile — Jadwal & Hasil di Atas
+
+**Tanggal Revisi:** 24 Juni 2026
+
+### 📌 Kondisi Sebelum Revisi
+
+Pada halaman `mahasiswa/dashboard.html`, layout dua kolom menggunakan grid `lg:grid-cols-3`:
+
+```
+┌─────────────────────────────┐  ┌──────────────────┐
+│  Tracking Status Berkas     │  │  Jadwal Ujian     │
+│  (Timeline 5 step)          │  │  Hasil & Revisi   │
+│  lg:col-span-2              │  │                   │
+└─────────────────────────────┘  └──────────────────┘
+         DESKTOP (lg:) — OK ✅
+```
+
+Pada tampilan **mobile** (< 1024px), grid berubah menjadi 1 kolom dan elemen ditampilkan **sesuai urutan HTML**:
+
+```
+┌─────────────────────────────┐
+│  Welcome Banner             │  ← Tampil 1
+├─────────────────────────────┤
+│  Status Cards (4 kartu)     │  ← Tampil 2
+├─────────────────────────────┤
+│  Tracking Status Berkas     │  ← Tampil 3 ❌ Panjang!
+│  (5 step timeline —         │
+│   memakan banyak scroll)    │
+├─────────────────────────────┤
+│  Jadwal Ujian               │  ← Tampil 4 ❌ Terlalu bawah
+├─────────────────────────────┤
+│  Hasil & Catatan Revisi     │  ← Tampil 5 ❌ Terlalu bawah
+└─────────────────────────────┘
+         MOBILE — Masalah ⚠️
+```
+
+### ❓ Alasan Revisi
+
+**Informasi Jadwal Ujian dan Hasil/Catatan Revisi adalah informasi paling kritis bagi mahasiswa**, terutama saat dibuka dari perangkat mobile:
+
+1. **Jadwal Ujian** berisi tanggal, waktu, dan ruangan ujian yang wajib diketahui — mahasiswa perlu cek ini segera.
+2. **Catatan Revisi** berisi poin-poin perbaikan dengan batas waktu, yang memerlukan tindakan segera.
+3. **Timeline Tracking** (5 step) memang informatif, tapi bersifat **status pasif** — mahasiswa tidak bisa melakukan aksi apapun dari sana.
+4. Timeline yang panjang (5 tahapan) memakan **banyak ruang scroll** di layar HP, menyebabkan informasi penting tertimbun di bagian bawah.
+
+Prinsip UX yang diterapkan: **"Mobile-first content prioritization"** — pada layar kecil, tampilkan konten yang paling *actionable* dan time-sensitive di bagian atas.
+
+### ✅ Kondisi Sesudah Revisi
+
+Menambahkan Tailwind CSS `order` utility pada dua elemen grid:
+
+**File:** `mahasiswa/dashboard.html`
+
+```diff
+ <!-- Timeline Tracking -->
+-<section class="lg:col-span-2 bg-white rounded-2xl ...">
++<section class="order-2 lg:order-1 lg:col-span-2 bg-white rounded-2xl ...">
+
+ <!-- Jadwal & Pengumuman -->
+-<div class="space-y-4" id="jadwal">
++<div class="order-1 lg:order-2 space-y-4" id="jadwal">
+```
+
+**Hasil pada mobile:**
+
+```
+┌─────────────────────────────┐
+│  Welcome Banner             │  ← Tampil 1
+├─────────────────────────────┤
+│  Status Cards (4 kartu)     │  ← Tampil 2
+├─────────────────────────────┤
+│  ⭐ Jadwal Ujian            │  ← Tampil 3 ✅ Prioritas!
+├─────────────────────────────┤
+│  ⭐ Hasil & Catatan Revisi  │  ← Tampil 4 ✅ Prioritas!
+├─────────────────────────────┤
+│  Tracking Status Berkas     │  ← Tampil 5 (turun ke bawah)
+└─────────────────────────────┘
+         MOBILE — Diperbaiki ✅
+```
+
+**Pada desktop:** Layout tetap sama persis — Timeline di kiri (2 kolom), Jadwal & Hasil di kanan (1 kolom).
+
+### 📊 Dampak Perubahan
+
+| Aspek | Sebelum | Sesudah |
+|-------|---------|--------|
+| Urutan mobile | Timeline → Jadwal → Hasil | **Jadwal → Hasil → Timeline** |
+| Urutan desktop | Timeline (kiri) ↔ Jadwal (kanan) | **Tidak berubah** |
+| Baris kode berubah | — | 2 baris (tambah class `order`) |
+| JavaScript | Tidak diperlukan | Tetap **tidak diperlukan** |
+
+### 💡 Catatan Teknis
+
+- Tailwind `order-1` dan `order-2` menggunakan CSS `order` property pada flex/grid children
+- Pada breakpoint `lg:` (≥ 1024px), `lg:order-1` dan `lg:order-2` mengembalikan urutan ke posisi desktop semula
+- Perubahan ini **tidak memengaruhi** HTML source order, hanya visual order — sehingga aksesibilitas (screen reader, tab order) tetap terjaga
+
+---
+
 ## Perbandingan Alur Bisnis: Sebelum vs Sesudah Revisi
 
 ### Sebelum Revisi (5 Role — Full Digital)
@@ -296,4 +400,69 @@ Mahasiswa  →  Admin  →  Kaprodi  →  Penguji
 
 ---
 
-*Dokumentasi revisi ini dibuat pada 20 Juni 2026 sebagai lampiran dari SIDANUS_Dokumentasi.md*
+## Revisi 5: Penyederhanaan Sidebar Mahasiswa (Hapus Pintasan "Pengumuman" & "Jadwal")
+
+### 📌 Kondisi Sebelum Revisi
+
+Pada sidebar menu navigasi mahasiswa (kategori **INFORMASI**), terdapat dua link pintasan jangkar (anchor shortcut) yaitu:
+* **Pengumuman** (`href="#pengumuman"` atau `href="dashboard.html#pengumuman"`)
+* **Jadwal Ujian** (`href="#jadwal"` atau `href="dashboard.html#jadwal"`)
+
+Hal ini membuat item menu sidebar terlihat ganda/redundant karena informasi jadwal dan pengumuman tersebut sebenarnya sudah terpampang langsung secara penuh di halaman utama Dashboard.
+
+### ❓ Alasan Revisi
+
+Menghindari redundansi tata letak menu navigasi dan membuat tampilan sidebar lebih minimalis serta bersih. Pengguna cukup kembali ke **Dashboard** untuk membaca kedua informasi tersebut.
+
+### 🛠️ Perubahan yang Dilakukan
+
+1. **Menghapus pintasan "Pengumuman" dan "Jadwal Ujian"** dari menu navigasi sidebar di seluruh file halaman mahasiswa.
+2. **Menyatukan link "Jadwal Publik"** ke kategori **INFORMASI** agar konsisten di setiap halaman mahasiswa, dengan memperbaiki path-nya menjadi `../jadwal-publik.html` agar tidak terjadi error 404 saat diakses dari subfolder `mahasiswa/`.
+
+File yang diperbarui:
+* [dashboard.html](file:///d:/Desktop/APSI_3/mahasiswa/dashboard.html)
+* [daftar-ujian.html](file:///d:/Desktop/APSI_3/mahasiswa/daftar-ujian.html)
+* [notifikasi.html](file:///d:/Desktop/APSI_3/mahasiswa/notifikasi.html)
+* [sk-kelulusan.html](file:///d:/Desktop/APSI_3/mahasiswa/sk-kelulusan.html)
+* [sk-kelulusan.html](file:///d:/Desktop/APSI_3/mahasiswa/sk-kelulusan.html)
+* [profil.html](file:///d:/Desktop/APSI_3/mahasiswa/profil.html)
+
+---
+
+## Revisi 6: Sinkronisasi Berkas Syarat Munaqasyah
+
+### 📌 Kondisi Sebelum Revisi
+
+Terdapat inkonsistensi antara notifikasi kurang berkas dengan panel upload berkas Munaqasyah:
+1. **Notifikasi (`notifikasi.html`)** menyebutkan mahasiswa kurang 2 berkas: "Transkip Nilai Sementara (Semester 1–7)" dan "Bukti Lunas Pembayaran SPP Semester 8".
+2. **Form Pendaftaran (`daftar-ujian.html`)** pada panel Munaqasyah hanya menyediakan 2 tempat upload berkas: "SK Pelaksanaan Ujian Seminar Hasil" dan "Berita Acara Seminar Hasil".
+
+### ❓ Alasan Revisi
+
+Agar tidak membingungkan mahasiswa, berkas yang dipersyaratkan di notifikasi harus sama persis dengan slot upload yang tersedia di form pendaftaran. Mengingat standar ujian Munaqasyah, persyaratan tidak hanya dua dokumen, melainkan paket dokumen yang lebih lengkap.
+
+### 🛠️ Perubahan yang Dilakukan
+
+1. **Memperluas panel berkas Munaqasyah di `daftar-ujian.html`** menjadi 7 dokumen lengkap: SK & Berita Acara Seminar Hasil, Naskah Skripsi, Kartu Bimbingan, Sertifikat, Transkrip Nilai Sementara, dan Bukti Lunas SPP.
+2. **Menyelaraskan list berkas di `notifikasi.html`** sehingga mencantumkan ke-7 dokumen tersebut.
+
+---
+
+## Revisi 7: Perbaikan Inkonsistensi Judul SK Kelulusan
+
+### 📌 Kondisi Sebelum Revisi
+
+Pada halaman `sk-kelulusan.html`, judul dokumen berbunyi **"Surat Keterangan Kelulusan Ujian Skripsi"**, sementara di dalam isi dokumen menerangkan bahwa ujian yang baru saja lulus adalah **"Ujian Proposal"**.
+
+### ❓ Alasan Revisi
+
+Istilah "Kelulusan Ujian Skripsi" identik dengan Munaqasyah / Yudisium. Menggunakan istilah ini untuk ujian Proposal sangat menyesatkan.
+
+### 🛠️ Perubahan yang Dilakukan
+
+1. Mengubah teks `<title>` dan `<meta name="description">` agar merefleksikan "Ujian Proposal".
+2. Mengubah judul teks di dalam kertas `<h1>` dari "Surat Keterangan Kelulusan Ujian Skripsi" menjadi **"Surat Keterangan Lulus Ujian Proposal"**.
+
+---
+
+*Dokumentasi revisi ini dibuat pada 20 Juni 2026, terakhir diperbarui 24 Juni 2026, sebagai lampiran dari SIDANUS_Dokumentasi.md*
