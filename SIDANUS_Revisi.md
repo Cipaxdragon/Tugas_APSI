@@ -16,7 +16,11 @@ UIN Alauddin Makassar · Terakhir Diperbarui: 24 Juni 2026
 | 5 | Penyederhanaan Sidebar: Hapus Pintasan "Pengumuman" & "Jadwal" | Semua file `mahasiswa/*.html` | ✅ Selesai |
 | 6 | Sinkronisasi Berkas Syarat Munaqasyah | `mahasiswa/notifikasi.html`, `mahasiswa/daftar-ujian.html` | ✅ Selesai |
 | 7 | Perbaikan Inkonsistensi Judul SK Kelulusan | `mahasiswa/sk-kelulusan.html` | ✅ Selesai |
-
+| 8 | Penghapusan Input "Hari" pada Penjadwalan | `admin/penjadwalan.html` | ✅ Selesai |
+| 9 | Pembuatan Fitur Verifikasi Berkas (Pop-up Modal) | `admin/dashboard.html`, `assets/js/app.js` | ✅ Selesai |
+| 10 | Integrasi Pembimbing ke Dropdown Penguji | `admin/penjadwalan.html` | ✅ Selesai |
+| 11 | Implementasi Real-time File Upload UI Feedback | `assets/js/app.js`, `mahasiswa/daftar-ujian.html` | ✅ Selesai |
+| 12 | Penyesuaian Kolom Aksi Tabel Admin | `admin/dashboard.html` | ✅ Selesai |
 
 ---
 
@@ -466,3 +470,70 @@ Istilah "Kelulusan Ujian Skripsi" identik dengan Munaqasyah / Yudisium. Mengguna
 ---
 
 *Dokumentasi revisi ini dibuat pada 20 Juni 2026, terakhir diperbarui 24 Juni 2026, sebagai lampiran dari SIDANUS_Dokumentasi.md*
+
+---
+
+## Revisi 8: Penghapusan Input "Hari" pada Penjadwalan
+
+### 📌 Kondisi Sebelum Revisi
+Pada halaman `admin/penjadwalan.html`, terdapat input manual untuk mengetikkan "Hari" (misal: Senin, Selasa) secara terpisah dari input "Tanggal".
+
+### ❓ Alasan Revisi
+Menginput hari secara manual sangat rawan *human error* (kesalahan manusia). Misalnya admin memilih tanggal "23 Juni 2026" (yang aslinya hari Selasa), tapi mengetik "Rabu" di kolom Hari. Ini akan memicu kebingungan dan jadwal yang berantakan. Sistem komputer seharusnya mampu mengekstrak nama hari secara otomatis dari format Tanggal.
+
+### 🛠️ Perubahan yang Dilakukan
+Menghapus kolom input "Hari" dari form Penjadwalan Ujian. Admin sekarang hanya perlu memasukkan "Tanggal Ujian", "Jam Mulai", dan "Jam Selesai".
+
+---
+
+## Revisi 9: Pembuatan Fitur Verifikasi Berkas (Pop-up Modal)
+
+### 📌 Kondisi Sebelum Revisi
+Pada Dasbor Admin (`admin/dashboard.html`), tombol verifikasi berkas langsung tertulis "Setujui" dan "Kembalikan" di dalam tabel antrean. Admin bisa langsung menyetujui mahasiswa tanpa harus mengecek berkasnya.
+
+### ❓ Alasan Revisi
+Tampilan ini menjebak Admin (UX trap) untuk melakukan *blind approval* (persetujuan buta) yang mana berpotensi meloloskan berkas mahasiswa yang salah atau buram.
+
+### 🛠️ Perubahan yang Dilakukan
+1. Mengganti tombol aksi di tabel utama menjadi tombol **"🔍 Periksa Berkas"**.
+2. Membuat **Pop-up Modal** dinamis menggunakan JavaScript di `app.js` yang akan memunculkan layar detail verifikasi.
+3. Di dalam Modal, menambahkan fitur validasi per-dokumen menggunakan *Radio Button* (✅ Valid / ❌ Tolak) dan menghilangkan teks *placeholder* "Syarat Terpenuhi" menjadi teks status netral ("Menunggu Pengecekan").
+
+---
+
+## Revisi 10: Integrasi Pembimbing ke Dropdown Penguji
+
+### 📌 Kondisi Sebelum Revisi
+Pada form penugasan dosen penguji (`admin/penjadwalan.html`), kolom Ketua Sidang dan Sekretaris tidak menyertakan indikator siapa Dosen Pembimbing mahasiswa tersebut.
+
+### ❓ Alasan Revisi
+Secara aturan akademik, Ketua Sidang dan Sekretaris (atau Penguji Pendamping) biasanya diisi secara ex-officio oleh Pembimbing I dan Pembimbing II. Admin tidak perlu meraba-raba atau membuka dokumen lain untuk mencari tahu siapa pembimbing mahasiswa tersebut saat menjadwalkan.
+
+### 🛠️ Perubahan yang Dilakukan
+Menambahkan label `(Pembimbing I)` dan `(Pembimbing II)` langsung ke dalam opsi dropdown pemilihan Dosen Penguji agar Admin bisa langsung memilihnya dengan tepat tanpa perlu *cross-check* manual.
+
+---
+
+## Revisi 11: Implementasi Real-time File Upload UI Feedback
+
+### 📌 Kondisi Sebelum Revisi
+Saat mahasiswa memilih file untuk diunggah di `mahasiswa/daftar-ujian.html`, UI tidak memberikan respon apapun (nama file tidak berubah, warna kotak tidak berubah).
+
+### ❓ Alasan Revisi
+Ketiadaan umpan balik visual (*visual feedback*) membuat pengguna (mahasiswa) ragu apakah file mereka benar-benar sudah terpilih atau belum.
+
+### 🛠️ Perubahan yang Dilakukan
+Menambahkan logika JavaScript di `assets/js/app.js` yang secara *real-time* menangkap aksi file upload. Jika file dipilih, teks *placeholder* akan terganti menjadi nama file yang diunggah, teks berubah menjadi hijau tebal, tombol berubah menjadi "Ganti File", dan *badge* status di akordeon atas otomatis berubah menjadi "✓ Sudah Upload".
+
+---
+
+## Revisi 12: Penyesuaian Kolom Aksi Tabel Admin
+
+### 📌 Kondisi Sebelum Revisi
+Penggunaan label warna hijau untuk status awal/menunggu sangat membingungkan secara hierarki visual.
+
+### ❓ Alasan Revisi
+Warna kuning/abu-abu lebih tepat merepresentasikan status "Menunggu/Pending", merah untuk "Ditolak/Kembalikan", dan hijau eksklusif digunakan hanya untuk status akhir "Disetujui/Lolos".
+
+### 🛠️ Perubahan yang Dilakukan
+Melakukan rombak total pada pewarnaan *Color Coding* di baris tabel dasbor Admin (`admin/dashboard.html`) agar lebih selaras dengan psikologi warna pada desain antarmuka (*UI/UX Psychology*).
