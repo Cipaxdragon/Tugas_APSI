@@ -1,0 +1,40 @@
+Berdasarkan pemeriksaan yang lebih detail terhadap percakapan dalam rekaman tersebut, berikut adalah rincian lengkap revisi, catatan, dan instruksi dari dosen pembimbing:
+
+### 1. Revisi Terkait Berkas dan Dokumen Ujian
+
+* **Kelengkapan Dokumen yang Hilang:** Dosen memperhatikan bahwa berkas yang di-upload masih terlalu sedikit. Mahasiswa diinstruksikan untuk menambahkan kembali beberapa lembar dokumen yang wajib ada, yaitu:
+* Lembar konsultasi / kartu kontrol (harus tetap ada).
+* SK Ujian.
+* Lembar ujian komprehensif.
+* Bukti hafalan (karena di sistem yang berlaku sekarang, ini sudah dipindahkan ke bagian pendaftaran ini).
+
+
+* **Keaslian Dokumen:** Dosen menegaskan bahwa berkas seperti lembar konsultasi dari Pembimbing 1 dan Pembimbing 2 harus berupa dokumen asli yang sudah ditandatangani, bukan dokumen kosong.
+* **Pembedaan Berkas Munaqasyah:** Berkas untuk ujian munaqasyah harus dibedakan lagi secara jelas dari berkas ujian lainnya.
+
+### 2. Revisi Logika Sistem & Alur Kerja (*Workflow*)
+
+* **Ubah Alur Pemilihan Jenis Ujian:** Pada prototype awal, jenis ujian masih berupa pilihan bebas (mahasiswa bisa langsung memilih Munaqasyah). Revisinya: mahasiswa **tidak boleh memilih jenis ujian secara manual**. Jenis ujian yang muncul harus terkunci dan terpilih otomatis berdasarkan status terakhir mahasiswa tersebut. (Contoh: Jika sudah lulus proposal, otomatis sistem mengunci untuk pendaftaran ujian hasil).
+* **Solusi Pintas Logika Status (Halaman Admin):** Karena mahasiswa sempat bingung menjelaskan dari mana sistem tahu status kelulusan mahasiswa tanpa adanya input nilai dari dosen penguji, dosen memberikan jalan keluar yang wajib diimplementasikan:
+* **Tambahkan tombol kontrol di dashboard Admin.**
+* Buat tombol seperti *"Proposal Selesai"* atau *"Hasil Selesai"*.
+* Tombol pendaftaran tahap berikutnya di akun mahasiswa (misal: pendaftaran ujian hasil) **tidak boleh aktif** sebelum Admin menekan tombol konfirmasi tersebut di halaman admin.
+
+
+
+### 3. Pemotongan Fitur (*Feature Scope Reduction*)
+
+* **Hapus / Jangan Ambil Bagian Penilaian Dosen &:** Mahasiswa sempat memperlihatkan UI penilaian penguji yang sangat panjang dan detail (mencakup penguasaan materi, input nilai, catatan revisi, dll).
+* **Instruksi Dosen:** Bagian penilaian ini **tidak usah diambil/dikerjakan dulu** karena terlalu kompleks dan membuat alur sistem berputar-putar.
+* Fokus utama sistem saat ini adalah **proses pendaftarannya saja**. Jika memang mau dimasukkan catatan revisi, cukup sediakan input catatan revisi umum tanpa perlu mengolah status kelulusan atau kalkulasi nilai yang rumit.
+
+
+
+### 4. Catatan Tampilan UI (User Interface)
+
+* **Ukuran & Tata Letak:** Tampilan-tampilan penting yang sebelumnya berada di bawah sudah dipindahkan ke atas, namun dosen meminta agar tampilannya diperbesar lagi (*"kasih besar ya"*) agar lebih pas saat ditampung di halaman tersebut.
+
+---
+
+**Sifat Tugas:**
+Revisi ini bersifat **wajib dan terakhir** untuk ditagih pada pertemuan pekan depan. Dosen menekankan untuk fokus pada perbaikan fungsional pendaftaran ini agar aplikasi bisa langsung selesai dan siap digunakan karena waktu ujian sudah dekat.

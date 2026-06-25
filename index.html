@@ -43,7 +43,7 @@
       <h2 class="text-2xl font-bold text-slate-800 mb-1">Selamat Datang</h2>
       <p class="text-slate-500 text-sm mb-8">Silakan masuk untuk melanjutkan ke portal akademik.</p>
 
-      <form action="mahasiswa/dashboard.html" method="get" class="space-y-5">
+      <form action="#" method="get" class="space-y-5" id="login-form">
 
         <!-- Role selector -->
         <div>
@@ -163,7 +163,14 @@
     <p class="text-center text-emerald-300/60 text-xs mt-6">
       &copy; 2026 Sistem Informasi · UIN Alauddin Makassar · v2.1.0
     </p>
+    <div class="text-center mt-3">
+      <button onclick="SidanusApp.resetData()" class="text-[10px] text-emerald-300/50 hover:text-white transition-colors">
+        🔄 Reset Data Simulasi
+      </button>
+    </div>
   </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 
 </html>
